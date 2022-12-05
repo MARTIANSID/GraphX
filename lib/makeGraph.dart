@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MakeGraph extends CustomPainter {
-  Offset center;
-  MakeGraph(this.center);
+  List<Offset> centers;
+  MakeGraph(this.centers);
   @override
   void paint(Canvas canvas, Size size) {
     var paint1 = Paint()
       ..color = Color(0xffaa44aa)
       ..style = PaintingStyle.fill;
-    canvas.drawCircle(center, 50, paint1);
+    for (int i = 0; i < centers.length;i++){
+      canvas.drawCircle(centers[i], 50, paint1);
+    } 
   }
 
   // Since this Sky painter has no fields, it always paints

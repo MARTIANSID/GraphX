@@ -14,7 +14,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-  Offset center = Offset(-1, -1);
+
+  List<Offset> centers = [];
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +28,13 @@ class _MyAppState extends State<MyApp> {
         home: GestureDetector(
           onTapDown: (val) {
             setState(() {
-              center = new Offset(val.globalPosition.dx, val.globalPosition.dy);
-              print(center);
+              centers.add(val.globalPosition);
             });
           },
           child: Scaffold(
             appBar: AppBar(title: Text("GraphX")),
             body: CustomPaint(
-              painter: MakeGraph(center),
+              painter: MakeGraph(centers),
             ),
           ),
         ));
