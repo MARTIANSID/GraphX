@@ -1,0 +1,4 @@
+#Tue Dec 06 11:42:06 IST 2022
+base.0=/Users/sidbansal/Documents/GitHub/GraphX/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

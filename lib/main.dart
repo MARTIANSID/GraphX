@@ -28,11 +28,10 @@ class _MyAppState extends State<MyApp> {
         home: GestureDetector(
           onTapDown: (val) {
             setState(() {
-              centers.add(val.globalPosition);
+              centers.add(Offset(val.globalPosition.dx, val.globalPosition.dy));
             });
           },
           child: Scaffold(
-            appBar: AppBar(title: Text("GraphX")),
             body: CustomPaint(
               painter: MakeGraph(centers),
             ),

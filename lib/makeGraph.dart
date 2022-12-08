@@ -6,11 +6,20 @@ class MakeGraph extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint1 = Paint()
-      ..color = Color(0xffaa44aa)
+      ..color = Colors.lightBlue
       ..style = PaintingStyle.fill;
-    for (int i = 0; i < centers.length;i++){
-      canvas.drawCircle(centers[i], 50, paint1);
-    } 
+
+    for (int i = 0; i < centers.length; i++) {
+      TextSpan span =
+          TextSpan(style: TextStyle(color: Colors.black), text: "${i + 1}");
+      TextPainter textPainter = TextPainter(
+          text: span,
+          textAlign: TextAlign.center,
+          textDirection: TextDirection.ltr);
+      textPainter.layout();
+      canvas.drawCircle(centers[i], 10, paint1);
+      textPainter.paint(canvas, Offset(centers[i].dx - 5, centers[i].dy - 5));
+    }
   }
 
   // Since this Sky painter has no fields, it always paints
@@ -19,7 +28,10 @@ class MakeGraph extends CustomPainter {
   // from the constructor) then we would return true if any
   // of them differed from the same fields on the oldDelegate.
   @override
-  bool shouldRepaint(MakeGraph oldDelegate) => true;
+  bool shouldRepaint(MakeGraph oldDelegate) {
+    return true;
+  }
+
   @override
   bool shouldRebuildSemantics(MakeGraph oldDelegate) => false;
 }
