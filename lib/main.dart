@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:graphx/HomePage.dart';
+import 'package:graphx/Providers/OperationButtonSelected.dart';
+import 'package:provider/provider.dart';
 import 'makeGraph.dart';
 
 void main() {
@@ -21,21 +24,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: GestureDetector(
-          onTapDown: (val) {
-            setState(() {
-              centers.add(Offset(val.globalPosition.dx, val.globalPosition.dy));
-            });
-          },
-          child: Scaffold(
-            body: CustomPaint(
-              painter: MakeGraph(centers),
-            ),
-          ),
-        ));
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        primaryColor: Color.fromRGBO(51, 122, 183, 1),
+      ),
+      home: HomePage(),
+    );
   }
 }
