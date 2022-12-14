@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphx/Components/OperationsBar.dart';
+import 'package:graphx/Providers/MakeGraph.dart';
+import 'package:graphx/makeGraph.dart';
+import 'package:provider/provider.dart';
 
 import 'Components/AppBar.dart';
 import 'Components/BuildGraph.dart';
@@ -34,7 +37,8 @@ class HomePage extends StatelessWidget {
               "Create graph and find the shortest path. or visualize different-different Algorithms",
               style: TextStyle(fontWeight: FontWeight.w100, fontSize: 15),
             ),
-            BuildGraph(),
+            ChangeNotifierProvider(
+                create: (_) => MakeGraphProvider(), child: BuildGraph()),
           ]),
         ),
       ),

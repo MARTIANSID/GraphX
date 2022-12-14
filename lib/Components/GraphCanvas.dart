@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:graphx/Providers/MakeGraph.dart';
 import 'package:graphx/Providers/OperationButtonSelected.dart';
 import 'package:graphx/makeGraph.dart';
 import 'package:provider/provider.dart';
+
+import '../models/node.dart';
 
 class GraphCanvas extends StatefulWidget {
   @override
@@ -12,11 +15,13 @@ class GraphCanvas extends StatefulWidget {
 }
 
 class _GraphCanvasState extends State<GraphCanvas> {
-  List<Offset> centers = [];
   @override
   Widget build(BuildContext context) {
     OperationButtonSelected operationButton =
         Provider.of<OperationButtonSelected>(context);
+
+    MakeGraphProvider makeGraph = Provider.of<MakeGraphProvider>(context);
+
     return Container(
       height: MediaQuery.of(context).size.height * 0.5,
       width: MediaQuery.of(context).size.width,
@@ -27,14 +32,15 @@ class _GraphCanvasState extends State<GraphCanvas> {
       child: GestureDetector(
           onTapDown: ((details) {
             if (operationButton.selected == 1) {
-              setState(() {
-                centers.add(
-                    Offset(details.localPosition.dx, details.localPosition.dy));
-              });
+              makeGraph.addNode(
+                  node: Node(
+                      coordinates: Offset(
+                          details.localPosition.dx, details.localPosition.dy)));
             }
           }),
           child: CustomPaint(
-            painter: MakeGraph(centers),
+            painter: MakeGraph(
+                nodes: makeGraph.nodesList, edges: makeGraph.edgeList),
           )),
     );
   }
