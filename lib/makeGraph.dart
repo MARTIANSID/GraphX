@@ -15,7 +15,7 @@ class MakeGraph extends CustomPainter {
       ..color = CostumColor.nodeInnerColor
       ..style = PaintingStyle.fill;
     var nodeOutterPaint= Paint()
-      ..color = Color.fromRGBO(168, 180, 195, 1)
+      ..color = CostumColor.nodeOuterColor
       ..strokeWidth=2
       ..style = PaintingStyle.stroke;
 
