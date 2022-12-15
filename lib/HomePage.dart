@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphx/Components/OperationsBar.dart';
-import 'package:graphx/Providers/MakeGraph.dart';
+import 'package:graphx/Providers/MakeGraphProvider.dart';
 import 'package:graphx/makeGraph.dart';
 import 'package:provider/provider.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graphx/Components/Buttons/PrimaryButton.dart';
 import 'package:graphx/Components/Buttons/SecondaryButtons.dart';
 import 'package:graphx/Components/Dialogs/AlertDialog.dart';
-import 'package:graphx/Providers/MakeGraph.dart';
+import 'package:graphx/Providers/MakeGraphProvider.dart';
 import 'package:provider/provider.dart';
 
 class BuildJoinNode extends StatefulWidget {

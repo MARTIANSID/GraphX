@@ -1,0 +1,72 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run
+
+## exception
+
+RPCError: _flutter.renderFrameWithRasterStats: (-32601) Unknown method "_flutter.renderFrameWithRasterStats".
+
+```
+#0      new _OutstandingRequest (package:vm_service/src/vm_service.dart:1746:45)
+#1      VmService._call (package:vm_service/src/vm_service.dart:2262:21)
+#2      VmService.callServiceExtension (package:vm_service/src/vm_service.dart:2233:14)
+#3      VmService.callMethod (package:vm_service/src/vm_service.dart:2215:12)
+#4      FlutterVmService.callMethodWrapper (package:flutter_tools/src/vmservice.dart:463:28)
+#5      FlutterVmService.renderFrameWithRasterStats (package:flutter_tools/src/vmservice.dart:562:49)
+#6      ResidentHandlers.debugFrameJankMetrics (package:flutter_tools/src/resident_runner.dart:691:35)
+<asynchronous suspension>
+#7      TerminalHandler.processTerminalInput (package:flutter_tools/src/resident_runner.dart:1739:7)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, 3.3.9, on Microsoft Windows [Version 10.0.19045.2251], locale en-IN)
+    • Flutter version 3.3.9 on channel stable at C:\Users\sai\Documents\flutter\Development\Sdk\flutter
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision b8f7f1f986 (3 weeks ago), 2022-11-23 06:43:51 +0900
+    • Engine revision 8f2221fbef
+    • Dart version 2.18.5
+    • DevTools version 2.15.0
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
+    • Android SDK at C:\Users\sai\AppData\Local\Android\sdk
+    • Platform android-33, build-tools 31.0.0
+    • Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
+    • Java version OpenJDK Runtime Environment (build 11.0.10+0-b96-7249189)
+    • All Android licenses accepted.
+
+[✓] Chrome - develop for the web
+    • Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[✗] Visual Studio - develop for Windows
+    ✗ Visual Studio not installed; this is necessary for Windows development.
+      Download at https://visualstudio.microsoft.com/downloads/.
+      Please install the "Desktop development with C++" workload, including all of its default components
+
+[✓] Android Studio (version 2020.3)
+    • Android Studio at C:\Program Files\Android\Android Studio
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 11.0.10+0-b96-7249189)
+
+[✓] VS Code (version 1.74.1)
+    • VS Code at C:\Users\sai\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.48.0
+
+[✓] Connected device (3 available)
+    • Windows (desktop) • windows • windows-x64    • Microsoft Windows [Version 10.0.19045.2251]
+    • Chrome (web)      • chrome  • web-javascript • Google Chrome 108.0.5359.125
+    • Edge (web)        • edge    • web-javascript • Microsoft Edge 108.0.1462.42
+
+[✓] HTTP Host Availability
+    • All required HTTP hosts are available
+
+! Doctor found issues in 1 category.
+```

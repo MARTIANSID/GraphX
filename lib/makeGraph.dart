@@ -22,7 +22,7 @@ class MakeGraph extends CustomPainter {
 
     double nodedRadius = 18;
     for (int i = 0; i < nodes.length; i++) {
-      String nodeName = "${i + 1}";
+      String nodeName ="${nodes[i].nodeNo}";
       TextSpan span =
           TextSpan(style: TextStyle(color: Colors.yellow), text: nodeName);
       TextPainter textPainter = TextPainter(

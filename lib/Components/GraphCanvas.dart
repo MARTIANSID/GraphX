@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:graphx/Providers/MakeGraph.dart';
+import 'package:graphx/Providers/MakeGraphProvider.dart';
 import 'package:graphx/Providers/OperationButtonSelected.dart';
 import 'package:graphx/makeGraph.dart';
 import 'package:provider/provider.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Providers/MakeGraph.dart';
+import '../../Providers/MakeGraphProvider.dart';
 import '../Buttons/SecondaryButtons.dart';
 
 Future<bool?> showMyDialog(context, TextEditingController weight,
