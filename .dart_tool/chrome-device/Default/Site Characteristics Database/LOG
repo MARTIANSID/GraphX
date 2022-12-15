@@ -1,4 +1,9 @@
-2022/12/15-13:14:42.585 b903 Reusing MANIFEST /private/var/folders/l5/zgpjblc12wsfxthd72w5tm880000gn/T/flutter_tools.QM9DWC/flutter_tools_chrome_device.Z7DKPH/Default/Site Characteristics Database/MANIFEST-000001
-2022/12/15-13:14:42.585 b903 Recovering log #6
-2022/12/15-13:14:42.585 b903 Reusing old log /private/var/folders/l5/zgpjblc12wsfxthd72w5tm880000gn/T/flutter_tools.QM9DWC/flutter_tools_chrome_device.Z7DKPH/Default/Site Characteristics Database/000006.log 
-2022/12/15-13:14:42.585 b903 Delete type=0 #3
+2022/12/15-15:41:42.029 1f6c Reusing MANIFEST C:\Users\sai\AppData\Local\Temp\flutter_tools.35de6e6f\flutter_tools_chrome_device.90f61dd6\Default\Site Characteristics Database/MANIFEST-000001
+2022/12/15-15:41:42.031 31e0 Compacting 4@0 + 0@1 files
+2022/12/15-15:41:42.035 31e0 Generated table #11@0: 8 keys, 562 bytes
+2022/12/15-15:41:42.035 31e0 Compacted 4@0 + 0@1 files => 562 bytes
+2022/12/15-15:41:42.036 31e0 compacted to: files[ 0 1 0 0 0 0 0 ]
+2022/12/15-15:41:42.037 31e0 Delete type=2 #4
+2022/12/15-15:41:42.037 31e0 Delete type=2 #6
+2022/12/15-15:41:42.037 31e0 Delete type=2 #7
+2022/12/15-15:41:42.038 31e0 Delete type=2 #8

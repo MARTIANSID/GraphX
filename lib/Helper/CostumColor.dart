@@ -1,13 +1,21 @@
 import 'package:flutter/animation.dart';
 
 class CostumColor {
-  Color? _primary = Color.fromRGBO(51, 122, 183, 1);
-  Color? _darkPrimary = Color.fromARGB(255, 34, 101, 160);
+  static Color? _primary = Color.fromRGBO(51, 122, 183, 1);
+  static Color? _darkPrimary = Color.fromARGB(255, 34, 101, 160);
+  static Color? _nodeOuterColor=Color.fromRGBO(168, 180, 195, 1);
+  static Color? _nodeInnerColor=Color.fromRGBO(104, 174, 186, 1);
   get primay {
     return _primary;
   }
+  static get nodeOuterColor{
+    return _nodeOuterColor;
+  }
+  static get nodeInnerColor{
+    return _nodeInnerColor;
+  }
 
-  get darkPrimary {
+  static get darkPrimary {
     return _darkPrimary;
   }
 }
