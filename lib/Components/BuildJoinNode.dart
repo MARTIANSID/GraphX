@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphx/Components/Buttons/PrimaryButton.dart';
+import 'package:graphx/Components/Buttons/SecondaryButtons.dart';
+import 'package:graphx/Components/Dialogs/AlertDialog.dart';
 
 class BuildJoinNode extends StatefulWidget {
   @override
@@ -89,8 +91,9 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
               ),
               PrimaryButton(
                   buttonName: "Join Node",
-                  action: () =>
-                      {debugPrint("${fromNode!.text} ${toNode!.text}")}),
+                  action: () {
+                    showMyDialog(context);
+                  }),
             ],
           ),
         ));
