@@ -33,17 +33,18 @@ class MakeGraphProvider extends ChangeNotifier {
       {int? weight, int? textAboveEdge}) {
     Node node1 = _nodes[nodeNo1 - 1];
     Node node2 = _nodes[nodeNo2 - 1];
-    _edges.add(new Edge(
+    _edges.add(Edge(
         node1: node1, node2: node2, weight: weight, isDirected: isDirected));
     notifyListeners();
   }
 
   void removeNode(Offset point1) {
-    for (int i = 0; i < _nodes.length; i++) {
+    for (int i = _nodes.length-1; i >=0; i--) {
       Node node = _nodes[i];
       Offset point2 = node.coordinates;
       double distance = math.sqrt(math.pow(point1.dx - point2.dx, 2) +
           math.pow(point1.dy - point2.dy, 2));
+      // node should be removed
       if (distance <= 18) {
         _nodes.removeAt(i);
         for (int j = 0; j < _edges.length; j++) {
@@ -53,6 +54,7 @@ class MakeGraphProvider extends ChangeNotifier {
             _edges.removeAt(j);
           }
         }
+        break;
       }
     }
     notifyListeners();

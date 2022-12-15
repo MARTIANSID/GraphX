@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:vector_math/vector_math.dart';
 import 'package:graphx/Helper/CostumColor.dart';
 
 import 'models/node.dart';
@@ -20,39 +21,6 @@ class MakeGraph extends CustomPainter {
       ..style = PaintingStyle.stroke;
 
     double nodedRadius = 18;
-
-    final edgePaint = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 4;
-    for (int i = 0; i < edges.length; i++) {
-      Edge e = edges[i];
-      bool isDirected = e.isDirected;
-
-      if (isDirected) {
-        // arrow
-        Offset p1 = e.node1.coordinates;
-        Offset p2 = e.node2.coordinates;
-        final dX = p2.dx - p1.dx;
-        final dY = p2.dy - p1.dy;
-        final angle = math.atan2(dY, dX);
-        final arrowSize = 15;
-        final arrowAngle = 25 * math.pi / 180;
-        final path = Path();
-
-        path.moveTo(p2.dx - arrowSize * math.cos(angle - arrowAngle),
-            p2.dy - arrowSize * math.sin(angle - arrowAngle));
-        path.lineTo(p2.dx, p2.dy);
-        path.lineTo(p2.dx - arrowSize * math.cos(angle + arrowAngle),
-            p2.dy - arrowSize * math.sin(angle + arrowAngle));
-        path.close();
-        canvas.drawLine(e.node1.coordinates, e.node2.coordinates, edgePaint);
-        canvas.drawPath(path, edgePaint);
-      } else {
-        canvas.drawLine(e.node1.coordinates, e.node2.coordinates, edgePaint);
-      }
-    }
-
     for (int i = 0; i < nodes.length; i++) {
       String nodeName = "${i + 1}";
       TextSpan span =
@@ -72,11 +40,55 @@ class MakeGraph extends CustomPainter {
           getTextPaintCordinates(
               coordinates: nodes[i]!.coordinates!, nodeName: nodeName));
     }
+    final edgePaint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 4;
+    for (int i = 0; i < edges.length; i++) {
+      Edge e = edges[i];
+      bool isDirected = e.isDirected;
+      double leftAngle = angleOf(e.node1.coordinates, e.node2.coordinates);
+      double rightAngle = degreeToRadian(degree: 180 - radianToDegree(radian: leftAngle));
+      
+      double slopeOfLine=(e.node2.coordinates.dy-e.node1.coordinates.dy)/(e.node2.coordinates.dy-e.node1.coordinates.dy);
+      // if(){
+      //   rightAngle=leftAngle;
+      //   leftAngle=degreeToRadian(degree: 180 - radianToDegree(radian: leftAngle));
+      // }
+      double updatedX1 =
+          e.node1.coordinates.dx + (nodedRadius * math.cos(leftAngle));
+      double updatedY1 =
+          e.node1.coordinates.dy + (nodedRadius * math.sin(leftAngle));
+
+      double updatedX2 =
+          e.node2.coordinates.dx + (nodedRadius * math.cos(rightAngle));
+      double updatedY2 =
+          e.node2.coordinates.dy + (nodedRadius * math.sin(rightAngle));
+
+      Offset p1 = Offset(updatedX1, updatedY1);
+      Offset p2 = Offset(updatedX2, updatedY2);
+      if (isDirected) {
+        //draw edge
+        
+        canvas.drawLine(p1, p2, edgePaint);
+        //draw arrow
+        canvas.drawPath(pathOfTriangle(p1: p1,p2: p2), edgePaint);
+      } else {
+        canvas.drawLine(p1, p2, edgePaint);
+      }
+    }
   }
 
   @override
   bool shouldRepaint(MakeGraph oldDelegate) {
     return true;
+  }
+
+  double angleOf(Offset p1, Offset p2) {
+    final double deltaY = (p1.dy - p2.dy);
+    final double deltaX = (p2.dx - p1.dx);
+    final double result = math.atan2(deltaY, deltaX);
+    return (result < 0) ? (360 + result) : result;
   }
 
   Offset getTextPaintCordinates(
@@ -87,7 +99,31 @@ class MakeGraph extends CustomPainter {
       return Offset(coordinates.dx - 9, coordinates.dy - 5);
     }
     return Offset(coordinates.dx - 13, coordinates.dy - 5);
-    ;
+  }
+
+  double degreeToRadian({required double degree}) {
+    return degree * math.pi / 180;
+  }
+
+  Path pathOfTriangle({required Offset p1, required Offset p2}) {
+    final dX = p2.dx - p1.dx;
+    final dY = p2.dy - p1.dy;
+    final angle = math.atan2(dY, dX);
+    final arrowSize = 15;
+    double arrowAngle = 25 * math.pi / 180;
+    final path = Path();
+
+    path.moveTo(p2.dx - arrowSize * math.cos(angle - arrowAngle),
+        p2.dy - arrowSize * math.sin(angle - arrowAngle));
+    path.lineTo(p2.dx, p2.dy);
+    path.lineTo(p2.dx - arrowSize * math.cos(angle + arrowAngle),
+        p2.dy - arrowSize * math.sin(angle + arrowAngle));
+    path.close();
+    return path;
+  }
+
+  double radianToDegree({required double radian}) {
+    return radian * 180 / math.pi;
   }
 
   @override

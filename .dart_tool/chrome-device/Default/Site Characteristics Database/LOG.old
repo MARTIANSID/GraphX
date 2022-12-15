@@ -1,10 +1,13 @@
-2022/12/15-15:41:42.005 1f6c Log #3: 6 ops saved to Table #7 OK
-2022/12/15-15:41:42.008 1f6c Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.35de6e6f\flutter_tools_chrome_device.90f61dd6\Default\Site Characteristics Database/000003.log: OK
-2022/12/15-15:41:42.011 1f6c Log #6: 17 ops saved to Table #8 OK
-2022/12/15-15:41:42.012 1f6c Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.35de6e6f\flutter_tools_chrome_device.90f61dd6\Default\Site Characteristics Database/000006.log: OK
-2022/12/15-15:41:42.012 1f6c Table #4: 6 entries OK
-2022/12/15-15:41:42.012 1f6c Table #6: 6 entries OK
-2022/12/15-15:41:42.013 1f6c Table #7: 6 entries OK
-2022/12/15-15:41:42.013 1f6c Table #8: 17 entries OK
-2022/12/15-15:41:42.017 1f6c Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.35de6e6f\flutter_tools_chrome_device.90f61dd6\Default\Site Characteristics Database/MANIFEST-000001: OK
-2022/12/15-15:41:42.024 1f6c **** Repaired leveldb C:\Users\sai\AppData\Local\Temp\flutter_tools.35de6e6f\flutter_tools_chrome_device.90f61dd6\Default\Site Characteristics Database; recovered 4 files; 1595 bytes. Some data may have been lost. ****
+2022/12/15-16:13:29.863 2998 Reusing MANIFEST C:\Users\sai\AppData\Local\Temp\flutter_tools.e7ce65d\flutter_tools_chrome_device.bf67803e\Default\Site Characteristics Database/MANIFEST-000001
+2022/12/15-16:13:29.864 2998 Recovering log #3
+2022/12/15-16:13:29.864 2998 Level-0 table #13: started
+2022/12/15-16:13:29.867 2998 Level-0 table #13: 295 bytes OK
+2022/12/15-16:13:29.868 2998 Recovering log #6
+2022/12/15-16:13:29.868 2998 Level-0 table #14: started
+2022/12/15-16:13:29.870 2998 Level-0 table #14: 766 bytes OK
+2022/12/15-16:13:29.870 2998 Recovering log #10
+2022/12/15-16:13:29.871 2998 Reusing old log C:\Users\sai\AppData\Local\Temp\flutter_tools.e7ce65d\flutter_tools_chrome_device.bf67803e\Default\Site Characteristics Database/000010.log 
+2022/12/15-16:13:29.873 2998 Delete type=0 #3
+2022/12/15-16:13:29.873 2998 Delete type=2 #4
+2022/12/15-16:13:29.873 2998 Delete type=2 #6
+2022/12/15-16:13:29.873 2998 Delete type=0 #6
