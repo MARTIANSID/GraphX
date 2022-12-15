@@ -20,7 +20,7 @@ class PrimaryButton extends StatelessWidget {
       onTap: () => action(),
       hoverColor: (selection == null || !selection!)
           ? Color.fromARGB(255, 211, 210, 210)
-          : CostumColor().darkPrimary,
+          : CostumColor.darkPrimary,
       customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),

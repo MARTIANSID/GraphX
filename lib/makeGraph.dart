@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graphx/Helper/CostumColor.dart';
 
 import 'models/node.dart';
 import 'models/edge.dart';
@@ -10,13 +11,13 @@ class MakeGraph extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var nodeInnerPaint = Paint()
-      ..color = Color.fromRGBO(104, 174, 186, 1)
+      ..color = CostumColor.nodeInnerColor
       ..style = PaintingStyle.fill;
+      
     var nodeOutterPaint= Paint()
-      ..color = Color.fromRGBO(168, 180, 195, 1)
+      ..color = CostumColor.nodeOuterColor
       ..strokeWidth=2
       ..style = PaintingStyle.stroke;
-      
     double nodedRadius=18;
     for (int i = 0; i < nodes.length; i++) {
       String nodeName="${i+1}";
@@ -39,12 +40,6 @@ class MakeGraph extends CustomPainter {
       // canvas.drawLine(, p2, paint)
     }
   }
-
-  // Since this Sky painter has no fields, it always paints
-  // the same thing and semantics information is the same.
-  // Therefore we return false here. If we had fields (set
-  // from the constructor) then we would return true if any
-  // of them differed from the same fields on the oldDelegate.
   @override
   bool shouldRepaint(MakeGraph oldDelegate) {
     return true;
