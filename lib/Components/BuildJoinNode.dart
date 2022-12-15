@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:graphx/Components/Buttons/PrimaryButton.dart';
 import 'package:graphx/Components/Buttons/SecondaryButtons.dart';
 import 'package:graphx/Components/Dialogs/AlertDialog.dart';
+import 'package:graphx/Providers/MakeGraph.dart';
+import 'package:provider/provider.dart';
 
 class BuildJoinNode extends StatefulWidget {
   @override
@@ -26,6 +28,9 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
 
   @override
   Widget build(BuildContext context) {
+    MakeGraphProvider makeGraph = Provider.of<MakeGraphProvider>(context);
+    TextEditingController weight = TextEditingController();
+    TextEditingController textAboveEdge = TextEditingController();
     return Container(
         width: 250,
         height: 45,
@@ -91,8 +96,14 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
               ),
               PrimaryButton(
                   buttonName: "Join Node",
-                  action: () {
-                    showMyDialog(context);
+                  action: () async {
+                    bool? isDirected =
+                        await showMyDialog(context, weight, textAboveEdge);
+                
+                    bool directed = isDirected == null ? false : isDirected;
+
+                    makeGraph.makeEdge(int.parse(fromNode!.text),
+                        int.parse(toNode!.text), directed);
                   }),
             ],
           ),

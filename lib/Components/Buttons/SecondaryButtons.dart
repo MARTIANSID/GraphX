@@ -20,7 +20,9 @@ class SecondaryButton extends StatelessWidget {
             width: 0.9,
             color: Color.fromRGBO(197, 218, 236, 1),
           )),
-      onPressed: () {},
+      onPressed: (){
+        function();
+      },
       child: Text(
         buttonName,
         style: TextStyle(color: Color.fromRGBO(45, 110, 158, 1)),

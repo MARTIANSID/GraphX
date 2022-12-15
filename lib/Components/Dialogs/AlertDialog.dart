@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../Buttons/SecondaryButtons.dart';
 
-Future<void> showMyDialog(context) async {
-  return showDialog<void>(
+Future<bool?> showMyDialog(context, TextEditingController weight,
+    TextEditingController textAboveEdge) async {
+  return showDialog<bool?>(
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
@@ -35,7 +36,7 @@ Future<void> showMyDialog(context) async {
                   ),
                   Expanded(
                     child: TextField(
-                      // controller: fromNode,
+                      controller: weight,
                       style: const TextStyle(fontWeight: FontWeight.w400),
                       cursorColor: Colors.black,
                       cursorWidth: 0.5,
@@ -70,7 +71,7 @@ Future<void> showMyDialog(context) async {
                     ),
                     Expanded(
                       child: TextField(
-                        // controller: fromNode,
+                        controller: textAboveEdge,
                         style: const TextStyle(fontWeight: FontWeight.w400),
                         cursorColor: Colors.black,
                         cursorWidth: 0.5,
@@ -101,14 +102,20 @@ Future<void> showMyDialog(context) async {
                     children: [
                       SecondaryButton(
                         buttonName: "Directed",
-                        function: () {},
+                        function: () {
+                          Navigator.pop(context);
+                          return true;
+                        },
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       SecondaryButton(
                         buttonName: "Undirected",
-                        function: () {},
+                        function: () {
+                          Navigator.pop(context);
+                          return false;
+                        },
                       ),
                     ],
                   ))

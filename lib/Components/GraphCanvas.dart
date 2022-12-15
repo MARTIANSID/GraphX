@@ -35,7 +35,8 @@ class _GraphCanvasState extends State<GraphCanvas> {
               makeGraph.addNode(
                   node: Node(
                       coordinates: Offset(
-                          details.localPosition.dx, details.localPosition.dy)));
+                          details.localPosition.dx, details.localPosition.dy),
+                      nodeNo: makeGraph.nodesList.length + 1));
             }
           }),
           child: CustomPaint(
