@@ -46,33 +46,67 @@ class MakeGraph extends CustomPainter {
       ..strokeWidth = 4;
     for (int i = 0; i < edges.length; i++) {
       Edge e = edges[i];
+      Offset point1 = e.node1.coordinates;
+      Offset point2 = e.node2.coordinates;
       bool isDirected = e.isDirected;
-      double leftAngle = angleOf(e.node1.coordinates, e.node2.coordinates);
-      double rightAngle = degreeToRadian(degree: 180 - radianToDegree(radian: leftAngle));
-      
-      double slopeOfLine=(e.node2.coordinates.dy-e.node1.coordinates.dy)/(e.node2.coordinates.dy-e.node1.coordinates.dy);
-      // if(){
-      //   rightAngle=leftAngle;
-      //   leftAngle=degreeToRadian(degree: 180 - radianToDegree(radian: leftAngle));
-      // }
-      double updatedX1 =
-          e.node1.coordinates.dx + (nodedRadius * math.cos(leftAngle));
-      double updatedY1 =
-          e.node1.coordinates.dy + (nodedRadius * math.sin(leftAngle));
 
-      double updatedX2 =
-          e.node2.coordinates.dx + (nodedRadius * math.cos(rightAngle));
-      double updatedY2 =
-          e.node2.coordinates.dy + (nodedRadius * math.sin(rightAngle));
+      double updatedX1, updatedX2, updatedY1, updatedY2;
+
+      if (point1.dx < point2.dx) {
+        updatedX2 = point2.dx -
+            (point2.dx - point1.dx) *
+                nodedRadius /
+                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
+                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
+        updatedX1 = point1.dx +
+            (point2.dx - point1.dx) *
+                nodedRadius /
+                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
+                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
+      } else {
+        updatedX2 = point2.dx +
+            (point1.dx - point2.dx) *
+                nodedRadius /
+                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
+                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
+        updatedX1 = point1.dx -
+            (point1.dx - point2.dx) *
+                nodedRadius /
+                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
+                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
+      }
+
+      if (point1.dy < point2.dy) {
+        updatedY2 = point2.dy -
+            (point2.dy - point1.dy) *
+                nodedRadius /
+                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
+                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
+        updatedY1 = point1.dy +
+            (point2.dy - point1.dy) *
+                nodedRadius /
+                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
+                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
+      } else {
+        updatedY2 = point2.dy +
+            (point1.dy - point2.dy) *
+                nodedRadius /
+                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
+                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
+        updatedY1 = point1.dy -
+            (point1.dy - point2.dy) *
+                nodedRadius /
+                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
+                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
+      }
 
       Offset p1 = Offset(updatedX1, updatedY1);
       Offset p2 = Offset(updatedX2, updatedY2);
+
       if (isDirected) {
-        //draw edge
-        
         canvas.drawLine(p1, p2, edgePaint);
         //draw arrow
-        canvas.drawPath(pathOfTriangle(p1: p1,p2: p2), edgePaint);
+        canvas.drawPath(pathOfTriangle(p1: p1, p2: p2), edgePaint);
       } else {
         canvas.drawLine(p1, p2, edgePaint);
       }
