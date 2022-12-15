@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../Providers/MakeGraph.dart';
 import '../Buttons/SecondaryButtons.dart';
 
 Future<bool?> showMyDialog(context, TextEditingController weight,
-    TextEditingController textAboveEdge) async {
+    TextEditingController textAboveEdge, MakeGraphProvider makeGraph) async {
   return showDialog<bool?>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -103,8 +105,10 @@ Future<bool?> showMyDialog(context, TextEditingController weight,
                       SecondaryButton(
                         buttonName: "Directed",
                         function: () {
+                          makeGraph.setIsDirected = true;
                           Navigator.pop(context);
-                          return true;
+
+                          // return true;
                         },
                       ),
                       SizedBox(
@@ -113,8 +117,10 @@ Future<bool?> showMyDialog(context, TextEditingController weight,
                       SecondaryButton(
                         buttonName: "Undirected",
                         function: () {
+                          makeGraph.setIsDirected = false;
                           Navigator.pop(context);
-                          return false;
+
+                          // return false;
                         },
                       ),
                     ],

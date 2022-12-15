@@ -14,31 +14,17 @@ class MakeGraph extends CustomPainter {
     var nodeInnerPaint = Paint()
       ..color = CostumColor.nodeInnerColor
       ..style = PaintingStyle.fill;
-    var nodeOutterPaint= Paint()
+    var nodeOutterPaint = Paint()
       ..color = CostumColor.nodeOuterColor
-      ..strokeWidth=2
+      ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 
-    double nodedRadius=18;
-    for (int i = 0; i < nodes.length; i++) {
-      String nodeName = "${i + 1}";
-      TextSpan span =
-          TextSpan(style: TextStyle(color: Colors.yellow), text: nodeName);
-      TextPainter textPainter = TextPainter(
-          text: span,
-          textAlign: TextAlign.center,
-          textDirection: TextDirection.ltr);
-      textPainter.layout();
-      //inner color of node
-      canvas.drawCircle(nodes[i].coordinates!, nodedRadius, nodeInnerPaint);
-      //boundary of a node
-      canvas.drawCircle(nodes[i].coordinates!, nodedRadius, nodeOutterPaint);
-      //node number
-      textPainter.paint(
-          canvas,
-          getTextPaintCordinates(
-              coordinates: nodes[i]!.coordinates!, nodeName: nodeName));
-    }
+    double nodedRadius = 18;
+
+    final edgePaint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 4;
     for (int i = 0; i < edges.length; i++) {
       Edge e = edges[i];
       bool isDirected = e.isDirected;
@@ -60,13 +46,34 @@ class MakeGraph extends CustomPainter {
         path.lineTo(p2.dx - arrowSize * math.cos(angle + arrowAngle),
             p2.dy - arrowSize * math.sin(angle + arrowAngle));
         path.close();
-        canvas.drawPath(path, nodeInnerPaint);
+        canvas.drawLine(e.node1.coordinates, e.node2.coordinates, edgePaint);
+        canvas.drawPath(path, edgePaint);
       } else {
-        canvas.drawLine(
-            e.node1.coordinates, e.node2.coordinates, nodeInnerPaint);
+        canvas.drawLine(e.node1.coordinates, e.node2.coordinates, edgePaint);
       }
     }
+
+    for (int i = 0; i < nodes.length; i++) {
+      String nodeName = "${i + 1}";
+      TextSpan span =
+          TextSpan(style: TextStyle(color: Colors.yellow), text: nodeName);
+      TextPainter textPainter = TextPainter(
+          text: span,
+          textAlign: TextAlign.center,
+          textDirection: TextDirection.ltr);
+      textPainter.layout();
+      //inner color of node
+      canvas.drawCircle(nodes[i].coordinates!, nodedRadius, nodeInnerPaint);
+      //boundary of a node
+      canvas.drawCircle(nodes[i].coordinates!, nodedRadius, nodeOutterPaint);
+      //node number
+      textPainter.paint(
+          canvas,
+          getTextPaintCordinates(
+              coordinates: nodes[i]!.coordinates!, nodeName: nodeName));
+    }
   }
+
   @override
   bool shouldRepaint(MakeGraph oldDelegate) {
     return true;

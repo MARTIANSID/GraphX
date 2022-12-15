@@ -37,6 +37,9 @@ class _GraphCanvasState extends State<GraphCanvas> {
                       coordinates: Offset(
                           details.localPosition.dx, details.localPosition.dy),
                       nodeNo: makeGraph.nodesList.length + 1));
+            } else if (operationButton.selected == 3) {
+              makeGraph.removeNode(
+                  Offset(details.localPosition.dx, details.localPosition.dy));
             }
           }),
           child: CustomPaint(

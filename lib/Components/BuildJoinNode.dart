@@ -97,13 +97,10 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
               PrimaryButton(
                   buttonName: "Join Node",
                   action: () async {
-                    bool? isDirected =
-                        await showMyDialog(context, weight, textAboveEdge);
-                
-                    bool directed = isDirected == null ? false : isDirected;
-
+                    await showMyDialog(
+                        context, weight, textAboveEdge, makeGraph);
                     makeGraph.makeEdge(int.parse(fromNode!.text),
-                        int.parse(toNode!.text), directed);
+                        int.parse(toNode!.text), makeGraph.getIsDirected);
                   }),
             ],
           ),
