@@ -5,19 +5,22 @@ import 'package:graphx/Components/Dialogs/AlertDialog.dart';
 import 'package:graphx/Providers/MakeGraphProvider.dart';
 import 'package:provider/provider.dart';
 
+import '../Helper/GarphValidationHelper.dart';
+
 class BuildJoinNode extends StatefulWidget {
   @override
   State<BuildJoinNode> createState() => _BuildJoinNodeState();
 }
 
 class _BuildJoinNodeState extends State<BuildJoinNode> {
-  GlobalKey? _formKey;
+  // GlobalKey? _formKey;
+  final _formKey = GlobalKey<FormState>();
   TextEditingController? fromNode, toNode;
   @override
   void initState() {
     fromNode = TextEditingController();
     toNode = TextEditingController();
-    _formKey = GlobalKey<FormState>();
+    // _formKey =  GlobalKey<FormState>();
     super.initState();
   }
 
@@ -49,7 +52,10 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
                   cursorColor: Colors.black,
                   cursorWidth: 0.5,
                   maxLength: 3,
-                  validator: ((value) {}),
+                  validator: ((value) {
+
+                    if (value == null || value!.length == 0) return "";
+                  }),
                   textAlign: TextAlign.start,
                   keyboardType: TextInputType.number,
                   //  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -59,6 +65,9 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black, width: 0.5),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red, width: 0.5),
                     ),
                   ),
                 ),
@@ -75,6 +84,9 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
                 child: TextFormField(
                   maxLength: 3,
                   controller: toNode,
+                  validator: ((value) {
+                    if (value == null || value!.length == 0) return "";
+                  }),
                   textAlign: TextAlign.start,
                   style: const TextStyle(fontWeight: FontWeight.w400),
                   keyboardType: TextInputType.number,
@@ -88,6 +100,10 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black, width: 0.5),
                     ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red, width: 0.5),
+                    ),
+                    
                   ),
                 ),
               ),
@@ -97,10 +113,42 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
               PrimaryButton(
                   buttonName: "Join Node",
                   action: () async {
-                    await showMyDialog(
-                        context, weight, textAboveEdge, makeGraph);
-                    makeGraph.makeEdge(int.parse(fromNode!.text),
-                        int.parse(toNode!.text), makeGraph.getIsDirected);
+                    //validate that fields are not empty
+                    if (_formKey!.currentState!.validate()) {
+                      int from = int.parse(fromNode!.text);
+                      int to = int.parse(toNode!.text);
+                      //check that edge is not previously present
+                      if (GraphHelpers.isEdgeThere(
+                              first: from,
+                              second: to,
+                              edgesList: makeGraph.edgeList) ==
+                          false) {
+                        //check that from node is there on canvas or not
+                        if (GraphHelpers.isNodePresent(
+                            nodeNo: from, nodesList: makeGraph.nodesList)) {
+                          //check that to node is there on canvas or not
+                          if (GraphHelpers.isNodePresent(
+                              nodeNo: to, nodesList: makeGraph.nodesList)) {
+                            //if everything goes well then show dialog box
+                            await showMyDialog(
+                                context, weight, textAboveEdge, makeGraph);
+                            makeGraph.makeEdge(
+                                int.parse(fromNode!.text),
+                                int.parse(toNode!.text),
+                                makeGraph.getIsDirected);
+                          } else {
+                            print(
+                                "show toast or notification with msg to node is not present");
+                          }
+                        } else {
+                          print(
+                              "show toast or notification with msg from node is not present");
+                        }
+                      } else {
+                        print(
+                            "show toast or notification with msg edge is previously present ");
+                      }
+                    }
                   }),
             ],
           ),

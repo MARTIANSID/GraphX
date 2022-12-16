@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+import 'package:graphx/Helper/GarphValidationHelper.dart';
 import 'package:graphx/models/edge.dart';
 import '../models/node.dart';
 import 'dart:math' as math;
@@ -31,15 +32,8 @@ class MakeGraphProvider extends ChangeNotifier {
 
   void makeEdge(int nodeNo1, int nodeNo2, bool isDirected,
       {int? weight, int? textAboveEdge}) {
-    Node? node1,node2;
-    for(Node node in _nodes){
-      if(node.nodeNo==nodeNo1){
-        node1=node;
-      }
-      if(node.nodeNo==nodeNo2){
-        node2=node;
-      }
-    }
+    Node? node1=GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo1, nodeList: _nodes);
+    Node? node2=GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo1, nodeList: _nodes);
     _edges.add(Edge(
         node1: node1!, node2: node2!, weight: weight, isDirected: isDirected));
     notifyListeners();
@@ -49,8 +43,7 @@ class MakeGraphProvider extends ChangeNotifier {
     for (int i = _nodes.length-1; i >=0; i--) {
       Node node = _nodes[i];
       Offset point2 = node.coordinates;
-      double distance = math.sqrt(math.pow(point1.dx - point2.dx, 2) +
-          math.pow(point1.dy - point2.dy, 2));
+      double distance = GraphHelpers.distanceBwPoints(point1: point1, point2: point2);
       // node should be removed
       if (distance <= 18) {
         _nodes.removeAt(i);
@@ -64,7 +57,7 @@ class MakeGraphProvider extends ChangeNotifier {
             _indToRemove.add(j);
           }
         }
-        //removing the edges
+        //traverse from back else it will create problem
         for(int j=_indToRemove.length-1;j>=0;j--)_edges.removeAt(_indToRemove[j]);
         break;
       }
