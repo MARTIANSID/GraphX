@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graphx/Components/Buttons/PrimaryButton.dart';
 import 'package:graphx/Components/Buttons/SecondaryButtons.dart';
 import 'package:graphx/Components/Dialogs/AlertDialog.dart';
+import 'package:graphx/Components/Messages/SnackBarCostum.dart';
 import 'package:graphx/Providers/MakeGraphProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -133,16 +134,16 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
                           makeGraph.makeEdge(int.parse(fromNode!.text),
                               int.parse(toNode!.text), makeGraph.getIsDirected);
                         } else {
-                          print(
-                              "show toast or notification with msg to node is not present");
+                          SnackBarCostum(msg: "To node is not present")
+                              .show(context: context);
                         }
                       } else {
-                        print(
-                            "show toast or notification with msg from node is not present");
+                        SnackBarCostum(msg: "From node is not present")
+                            .show(context: context);
                       }
                     } else {
-                      print(
-                          "show toast or notification with msg edge is previously present ");
+                      SnackBarCostum(msg: "Edge is previously present")
+                          .show(context: context);
                     }
                   }
                 }),
