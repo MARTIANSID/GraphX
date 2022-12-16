@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:vector_math/vector_math.dart';
 import 'package:graphx/Helper/CostumColor.dart';
 
+import 'Helper/GarphValidationHelper.dart';
 import 'models/node.dart';
 import 'models/edge.dart';
 import 'dart:math' as math;
@@ -22,9 +22,9 @@ class MakeGraph extends CustomPainter {
 
     double nodedRadius = 18;
     for (int i = 0; i < nodes.length; i++) {
-      String nodeName ="${nodes[i].nodeNo}";
+      String nodeName = "${nodes[i].nodeNo}";
       TextSpan span =
-          TextSpan(style: TextStyle(color: Colors.yellow), text: nodeName);
+          TextSpan(style: const TextStyle(color: Colors.yellow), text: nodeName);
       TextPainter textPainter = TextPainter(
           text: span,
           textAlign: TextAlign.center,
@@ -37,71 +37,31 @@ class MakeGraph extends CustomPainter {
       //node number
       textPainter.paint(
           canvas,
-          getTextPaintCordinates(
+          GraphHelpers.getTextPaintCordinates(
               coordinates: nodes[i]!.coordinates!, nodeName: nodeName));
     }
     final edgePaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.fill
       ..strokeWidth = 4;
+
+
+    /*
+        make the edges directed and undirected
+    */
     for (int i = 0; i < edges.length; i++) {
       Edge e = edges[i];
       Offset point1 = e.node1.coordinates;
       Offset point2 = e.node2.coordinates;
       bool isDirected = e.isDirected;
 
-      double updatedX1, updatedX2, updatedY1, updatedY2;
+      List<Offset> updatedOffSetsForEdgeBW2Nodes =
+          GraphHelpers.findUpdatedOffSetsForEdgeBW2Nodes(
+              point1: point1, point2: point2, nodedRadius: nodedRadius);
 
-      if (point1.dx < point2.dx) {
-        updatedX2 = point2.dx -
-            (point2.dx - point1.dx) *
-                nodedRadius /
-                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
-                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
-        updatedX1 = point1.dx +
-            (point2.dx - point1.dx) *
-                nodedRadius /
-                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
-                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
-      } else {
-        updatedX2 = point2.dx +
-            (point1.dx - point2.dx) *
-                nodedRadius /
-                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
-                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
-        updatedX1 = point1.dx -
-            (point1.dx - point2.dx) *
-                nodedRadius /
-                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
-                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
-      }
-
-      if (point1.dy < point2.dy) {
-        updatedY2 = point2.dy -
-            (point2.dy - point1.dy) *
-                nodedRadius /
-                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
-                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
-        updatedY1 = point1.dy +
-            (point2.dy - point1.dy) *
-                nodedRadius /
-                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
-                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
-      } else {
-        updatedY2 = point2.dy +
-            (point1.dy - point2.dy) *
-                nodedRadius /
-                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
-                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
-        updatedY1 = point1.dy -
-            (point1.dy - point2.dy) *
-                nodedRadius /
-                (math.sqrt((point2.dx - point1.dx) * (point2.dx - point1.dx) +
-                    (point2.dy - point1.dy) * (point2.dy - point1.dy)));
-      }
-
-      Offset p1 = Offset(updatedX1, updatedY1);
-      Offset p2 = Offset(updatedX2, updatedY2);
+      Offset p1 = updatedOffSetsForEdgeBW2Nodes[0];
+      Offset p2 = updatedOffSetsForEdgeBW2Nodes[1];
+      
 
       if (isDirected) {
         canvas.drawLine(p1, p2, edgePaint);
@@ -116,27 +76,6 @@ class MakeGraph extends CustomPainter {
   @override
   bool shouldRepaint(MakeGraph oldDelegate) {
     return true;
-  }
-
-  double angleOf(Offset p1, Offset p2) {
-    final double deltaY = (p1.dy - p2.dy);
-    final double deltaX = (p2.dx - p1.dx);
-    final double result = math.atan2(deltaY, deltaX);
-    return (result < 0) ? (360 + result) : result;
-  }
-
-  Offset getTextPaintCordinates(
-      {required Offset coordinates, required String nodeName}) {
-    if (nodeName.length == 1) {
-      return Offset(coordinates.dx - 5, coordinates.dy - 5);
-    } else if (nodeName.length == 2) {
-      return Offset(coordinates.dx - 9, coordinates.dy - 5);
-    }
-    return Offset(coordinates.dx - 13, coordinates.dy - 5);
-  }
-
-  double degreeToRadian({required double degree}) {
-    return degree * math.pi / 180;
   }
 
   Path pathOfTriangle({required Offset p1, required Offset p2}) {
@@ -154,10 +93,6 @@ class MakeGraph extends CustomPainter {
         p2.dy - arrowSize * math.sin(angle + arrowAngle));
     path.close();
     return path;
-  }
-
-  double radianToDegree({required double radian}) {
-    return radian * 180 / math.pi;
   }
 
   @override

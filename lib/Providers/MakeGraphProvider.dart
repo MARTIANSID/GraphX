@@ -33,7 +33,8 @@ class MakeGraphProvider extends ChangeNotifier {
   void makeEdge(int nodeNo1, int nodeNo2, bool isDirected,
       {int? weight, int? textAboveEdge}) {
     Node? node1=GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo1, nodeList: _nodes);
-    Node? node2=GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo1, nodeList: _nodes);
+    Node? node2=GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo2, nodeList: _nodes);
+    
     _edges.add(Edge(
         node1: node1!, node2: node2!, weight: weight, isDirected: isDirected));
     notifyListeners();
