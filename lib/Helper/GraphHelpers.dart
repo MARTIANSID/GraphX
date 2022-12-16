@@ -93,10 +93,15 @@ mixin GraphHelpers{
     return Offset(coordinates.dx - 13, coordinates.dy - 5);
   }
 
+  static Offset centerCordiantesOfLine({required Offset point1,required Offset point2}){
+    double updatedX=(point2.dx+point1.dx)/2;
+    double updatedY=(point2.dy+point1.dy)/2;
+    return Offset(updatedX, updatedY-30);
+  }
   static double degreeToRadian({required double degree}) {
     return degree * math.pi / 180;
   }
-  
+
   static double radianToDegree({required double radian}) {
     return radian * 180 / math.pi;
   }

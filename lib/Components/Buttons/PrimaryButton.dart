@@ -28,7 +28,7 @@ class PrimaryButton extends StatelessWidget {
         // color: CostumColor().primay,
         decoration: BoxDecoration(
           color:
-              (selection == null || !selection!) ? null : CostumColor().primay,
+              (selection == null || !selection!) ? null : CostumColor.primay,
           border: Border.all(color: Colors.grey),
           borderRadius: const BorderRadius.all(Radius.circular(5)),
         ),

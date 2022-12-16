@@ -6,7 +6,7 @@ import 'package:graphx/Components/Messages/SnackBarCostum.dart';
 import 'package:graphx/Providers/MakeGraphProvider.dart';
 import 'package:provider/provider.dart';
 
-import '../Helper/GarphValidationHelper.dart';
+import '../Helper/GraphHelpers.dart';
 
 class BuildJoinNode extends StatefulWidget {
   @override
@@ -132,7 +132,7 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
                           await showMyDialog(
                               context, weight, textAboveEdge, makeGraph);
                           makeGraph.makeEdge(int.parse(fromNode!.text),
-                              int.parse(toNode!.text), makeGraph.getIsDirected);
+                              int.parse(toNode!.text), makeGraph.getIsDirected,weight:weight.text==""?null:int.parse(weight.text));
                         } else {
                           SnackBarCostum(msg: "To node is not present")
                               .show(context: context);

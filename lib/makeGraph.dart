@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graphx/Helper/CostumColor.dart';
 
-import 'Helper/GarphValidationHelper.dart';
+import 'Helper/GraphHelpers.dart';
+import 'Helper/PaintsHelper.dart';
+import 'Helper/PathsHelper.dart';
 import 'models/node.dart';
 import 'models/edge.dart';
 import 'dart:math' as math;
@@ -12,39 +14,28 @@ class MakeGraph extends CustomPainter {
   MakeGraph({required this.nodes, required this.edges});
   @override
   void paint(Canvas canvas, Size size) {
-    var nodeInnerPaint = Paint()
-      ..color = CostumColor.nodeInnerColor
-      ..style = PaintingStyle.fill;
-    var nodeOutterPaint = Paint()
-      ..color = CostumColor.nodeOuterColor
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-
     double nodedRadius = 18;
     for (int i = 0; i < nodes.length; i++) {
       String nodeName = "${nodes[i].nodeNo}";
-      TextSpan span =
-          TextSpan(style: const TextStyle(color: Colors.yellow), text: nodeName);
-      TextPainter textPainter = TextPainter(
+      TextSpan span = TextSpan(
+          style: const TextStyle(color: Colors.yellow), text: nodeName);
+      TextPainter nodeCenterPaint = TextPainter(
           text: span,
           textAlign: TextAlign.center,
           textDirection: TextDirection.ltr);
-      textPainter.layout();
+      nodeCenterPaint.layout();
       //inner color of node
-      canvas.drawCircle(nodes[i].coordinates!, nodedRadius, nodeInnerPaint);
+      canvas.drawCircle(
+          nodes[i].coordinates!, nodedRadius, PaintsHelper.nodeInnerPaint);
       //boundary of a node
-      canvas.drawCircle(nodes[i].coordinates!, nodedRadius, nodeOutterPaint);
+      canvas.drawCircle(
+          nodes[i].coordinates!, nodedRadius, PaintsHelper.nodeOutterPaint);
       //node number
-      textPainter.paint(
+      nodeCenterPaint.paint(
           canvas,
           GraphHelpers.getTextPaintCordinates(
               coordinates: nodes[i]!.coordinates!, nodeName: nodeName));
     }
-    final edgePaint = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 4;
-
 
     /*
         make the edges directed and undirected
@@ -61,14 +52,25 @@ class MakeGraph extends CustomPainter {
 
       Offset p1 = updatedOffSetsForEdgeBW2Nodes[0];
       Offset p2 = updatedOffSetsForEdgeBW2Nodes[1];
-      
 
       if (isDirected) {
-        canvas.drawLine(p1, p2, edgePaint);
+        canvas.drawLine(p1, p2, PaintsHelper.edgePaint);
         //draw arrow
-        canvas.drawPath(pathOfTriangle(p1: p1, p2: p2), edgePaint);
+        canvas.drawPath(PathsHelper.pathOfLineArrow(p1: p1, p2: p2),
+            PaintsHelper.edgePaint);
       } else {
-        canvas.drawLine(p1, p2, edgePaint);
+        canvas.drawLine(p1, p2, PaintsHelper.edgePaint);
+      }
+      if (e.weight != null) {
+        /*
+          center cordiantes where weight need to be shown
+          */
+        Offset centerCordiante =
+            GraphHelpers.centerCordiantesOfLine(point1: p1, point2: p2);
+        canvas.drawRect(
+          centerCordiante & const Size(30, 20),
+          PaintsHelper.paintOfWeightNode,
+        );
       }
     }
   }
@@ -76,23 +78,6 @@ class MakeGraph extends CustomPainter {
   @override
   bool shouldRepaint(MakeGraph oldDelegate) {
     return true;
-  }
-
-  Path pathOfTriangle({required Offset p1, required Offset p2}) {
-    final dX = p2.dx - p1.dx;
-    final dY = p2.dy - p1.dy;
-    final angle = math.atan2(dY, dX);
-    final arrowSize = 15;
-    double arrowAngle = 25 * math.pi / 180;
-    final path = Path();
-
-    path.moveTo(p2.dx - arrowSize * math.cos(angle - arrowAngle),
-        p2.dy - arrowSize * math.sin(angle - arrowAngle));
-    path.lineTo(p2.dx, p2.dy);
-    path.lineTo(p2.dx - arrowSize * math.cos(angle + arrowAngle),
-        p2.dy - arrowSize * math.sin(angle + arrowAngle));
-    path.close();
-    return path;
   }
 
   @override
