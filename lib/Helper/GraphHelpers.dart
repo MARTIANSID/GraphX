@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:graphx/models/edge.dart';
 import 'package:graphx/models/node.dart';
@@ -17,11 +19,8 @@ mixin GraphHelpers {
   }
 
   static bool isNodePresent(
-      {required int nodeNo, required List<Node> nodesList}) {
-    for (Node node in nodesList) {
-      if (node.nodeNo == nodeNo) return true;
-    }
-    return false;
+      {required int nodeNo, required HashSet<int> nodeSet}) {
+    return nodeSet.contains(nodeNo);
   }
 
   static Node? getNodeWithNodeNo(
@@ -132,23 +131,24 @@ mixin GraphHelpers {
   static Offset cordiantesForPrintIngWeight(
       {required Offset point1,
       required Offset point2,
-      required String weight
-      }) {
-
-        double sideOfSquare=30;
-        double diagonalOfSquare=math.sqrt(2)*sideOfSquare;
-        double distance;
-        if(weight.length == 1){
-          distance=12;
-        }else if(weight.length == 2){
-          distance=10;
-        }else{
-          distance=6;
-        }
-        Offset centerPointOfLine=GraphHelpers.centerCordiantesOfLine(point1: point1, point2: point2);
-        Offset bCoordinate=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: centerPointOfLine, distance:(diagonalOfSquare/2)-distance, angleInDegree: 45+180);
-        return bCoordinate;
-
+      required String weight}) {
+    double sideOfSquare = 30;
+    double diagonalOfSquare = math.sqrt(2) * sideOfSquare;
+    double distance;
+    if (weight.length == 1) {
+      distance = 12;
+    } else if (weight.length == 2) {
+      distance = 10;
+    } else {
+      distance = 6;
+    }
+    Offset centerPointOfLine =
+        GraphHelpers.centerCordiantesOfLine(point1: point1, point2: point2);
+    Offset bCoordinate = GraphHelpers.pointsAtPerticularAngleAndDistance(
+        point1: centerPointOfLine,
+        distance: (diagonalOfSquare / 2) - distance,
+        angleInDegree: 45 + 180);
+    return bCoordinate;
   }
 
   static double degreeToRadian({required double degree}) {
@@ -157,5 +157,26 @@ mixin GraphHelpers {
 
   static double radianToDegree({required double radian}) {
     return radian * 180 / math.pi;
+  }
+
+  static Map<int, List<Node>> getGraph({required List<Edge> edgeList}) {
+    HashMap<int, List<Node>> graph = HashMap();
+
+    for (int i = 0; i < edgeList.length; i++) {
+      Edge edge = edgeList[i];
+      Node point1 = edge.node1;
+      Node point2 = edge.node2;
+      if (edge.isDirected) {
+        graph.putIfAbsent(point1.nodeNo, () => []);
+        graph[point1.nodeNo]!.add(point2);
+      } else {
+        graph.putIfAbsent(point1.nodeNo, () => []);
+        graph.putIfAbsent(point2.nodeNo, () => []);
+        graph[point1.nodeNo]!.add(point2);
+        graph[point2.nodeNo]!.add(point1);
+      }
+    }
+
+    return graph;
   }
 }

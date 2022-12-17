@@ -9,10 +9,12 @@ import 'dart:math' as math;
 class MakeGraphProvider extends ChangeNotifier {
   List<Node> _nodes = [];
   List<Edge> _edges = [];
+  HashSet<int> nodeSet=HashSet();
   bool _isDirected = false;
   int _maxNode=1;
   void addNode({required Node node}) {
     node.nodeNo =_maxNode++;
+    nodeSet.add(node.nodeNo);
     _nodes.add(node);
     notifyListeners();
   }
@@ -34,7 +36,7 @@ class MakeGraphProvider extends ChangeNotifier {
       {int? weight, int? textAboveEdge}) {
     Node? node1=GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo1, nodeList: _nodes);
     Node? node2=GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo2, nodeList: _nodes);
-    
+
     _edges.add(Edge(
         node1: node1!, node2: node2!, weight: weight, isDirected: isDirected));
     notifyListeners();
@@ -47,7 +49,9 @@ class MakeGraphProvider extends ChangeNotifier {
       double distance = GraphHelpers.distanceBwPoints(point1: point1, point2: point2);
       // node should be removed
       if (distance <= 18) {
+        nodeSet.remove(_nodes[i].nodeNo);
         _nodes.removeAt(i);
+
         //index's of edges that should be removed
         List<int> _indToRemove=[];
         //get the indexes to be removed

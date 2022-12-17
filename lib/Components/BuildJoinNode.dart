@@ -124,10 +124,10 @@ class _BuildJoinNodeState extends State<BuildJoinNode> {
                         false) {
                       //check that from node is there on canvas or not
                       if (GraphHelpers.isNodePresent(
-                          nodeNo: from, nodesList: makeGraph.nodesList)) {
+                          nodeNo: from, nodeSet: makeGraph.nodeSet)) {
                         //check that to node is there on canvas or not
                         if (GraphHelpers.isNodePresent(
-                            nodeNo: to, nodesList: makeGraph.nodesList)) {
+                            nodeNo: to, nodeSet: makeGraph.nodeSet)) {
                           //if everything goes well then show dialog box
                           await showMyDialog(
                               context, weight, textAboveEdge, makeGraph);
