@@ -65,12 +65,8 @@ class MakeGraph extends CustomPainter {
         /*
           center cordiantes where weight need to be shown
           */
-        Offset centerCordiante =
-            GraphHelpers.centerCordiantesOfLine(point1: p1, point2: p2);
-        canvas.drawRect(
-          centerCordiante & const Size(30, 20),
-          PaintsHelper.paintOfWeightNode,
-        );
+        Path weightPath=PathsHelper.pathOfRectangleWeight(point1: point1, point2: point2);
+        canvas.drawPath(weightPath, PaintsHelper.paintOfWeightNode);
       }
     }
   }

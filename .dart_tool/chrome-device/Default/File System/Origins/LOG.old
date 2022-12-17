@@ -1,9 +1,17 @@
-2022/12/16-14:35:38.877 16ac Log #3: 3 ops saved to Table #7 OK
-2022/12/16-14:35:38.885 16ac Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.1ff25fbe\flutter_tools_chrome_device.68bb51a5\Default\File System\Origins/000003.log: OK
-2022/12/16-14:35:38.885 16ac Log #6: 0 ops saved to Table #8 OK
-2022/12/16-14:35:38.888 16ac Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.1ff25fbe\flutter_tools_chrome_device.68bb51a5\Default\File System\Origins/000006.log: OK
-2022/12/16-14:35:38.889 16ac Table #4: 3 entries OK
-2022/12/16-14:35:38.890 16ac Table #6: 3 entries OK
-2022/12/16-14:35:38.890 16ac Table #7: 3 entries OK
-2022/12/16-14:35:38.895 16ac Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.1ff25fbe\flutter_tools_chrome_device.68bb51a5\Default\File System\Origins/MANIFEST-000001: OK
-2022/12/16-14:35:38.905 16ac **** Repaired leveldb C:\Users\sai\AppData\Local\Temp\flutter_tools.1ff25fbe\flutter_tools_chrome_device.68bb51a5\Default\File System\Origins; recovered 3 files; 537 bytes. Some data may have been lost. ****
+2022/12/16-16:28:44.317 7ac Reusing MANIFEST C:\Users\sai\AppData\Local\Temp\flutter_tools.a064aa88\flutter_tools_chrome_device.f8961ad4\Default\File System\Origins/MANIFEST-000001
+2022/12/16-16:28:44.318 7ac Recovering log #3
+2022/12/16-16:28:44.318 7ac Level-0 table #10: started
+2022/12/16-16:28:44.321 7ac Level-0 table #10: 179 bytes OK
+2022/12/16-16:28:44.321 7ac Recovering log #6
+2022/12/16-16:28:44.321 7ac Recovering log #10
+2022/12/16-16:28:44.322 7ac Reusing old log C:\Users\sai\AppData\Local\Temp\flutter_tools.a064aa88\flutter_tools_chrome_device.f8961ad4\Default\File System\Origins/000010.log 
+2022/12/16-16:28:44.324 7ac Delete type=0 #3
+2022/12/16-16:28:44.324 7ac Delete type=0 #6
+2022/12/16-16:28:44.325 33fc Compacting 4@0 + 0@1 files
+2022/12/16-16:28:44.328 33fc Generated table #11@0: 2 keys, 167 bytes
+2022/12/16-16:28:44.328 33fc Compacted 4@0 + 0@1 files => 167 bytes
+2022/12/16-16:28:44.329 33fc compacted to: files[ 0 1 0 0 0 0 0 ]
+2022/12/16-16:28:44.330 33fc Delete type=2 #4
+2022/12/16-16:28:44.330 33fc Delete type=2 #6
+2022/12/16-16:28:44.330 33fc Delete type=2 #7
+2022/12/16-16:28:44.330 33fc Delete type=2 #10

@@ -25,6 +25,11 @@ mixin GraphHelpers{
     return math.sqrt(math.pow(point1.dx - point2.dx, 2) +
           math.pow(point1.dy - point2.dy, 2));
   }
+  static Offset pointsAtPerticularAngleAndDistance({required Offset point1,required double distance,required double angleInDegree}){
+    double updatedX = point1.dx + (distance * math.cos(degreeToRadian(degree: angleInDegree)));
+    double updatedY  = point1.dy + (distance * math.sin(degreeToRadian(degree: angleInDegree)));
+    return Offset(updatedX, updatedY);
+  }
   static List<Offset> findUpdatedOffSetsForEdgeBW2Nodes({required Offset point1,required Offset point2,required double nodedRadius}){
     double updatedX1, updatedX2, updatedY1, updatedY2;
 
@@ -80,8 +85,8 @@ mixin GraphHelpers{
   static double angleOf(Offset p1, Offset p2) {
     final double deltaY = (p1.dy - p2.dy);
     final double deltaX = (p2.dx - p1.dx);
-    final double result = math.atan2(deltaY, deltaX);
-    return (result < 0) ? (360 + result) : result;
+    final double result = radianToDegree(radian: math.atan2(deltaY, deltaX));
+    return 360-((result < 0) ? (360 + result) : result);
   }
   static Offset getTextPaintCordinates(
       {required Offset coordinates, required String nodeName}) {
@@ -96,7 +101,7 @@ mixin GraphHelpers{
   static Offset centerCordiantesOfLine({required Offset point1,required Offset point2}){
     double updatedX=(point2.dx+point1.dx)/2;
     double updatedY=(point2.dy+point1.dy)/2;
-    return Offset(updatedX, updatedY-30);
+    return Offset(updatedX, updatedY);
   }
   static double degreeToRadian({required double degree}) {
     return degree * math.pi / 180;
