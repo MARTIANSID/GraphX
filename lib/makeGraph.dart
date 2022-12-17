@@ -65,12 +65,11 @@ class MakeGraph extends CustomPainter {
         Path weightPath =
             PathsHelper.pathOfRectangleWeight(point1: point1, point2: point2);
         //draw weighted rectangle
-        canvas.drawPath(weightPath, PaintsHelper.paintOfWeightNode);
-        //print text of weight
+        canvas.drawPath(weightPath, PaintsHelper.paintOfWeightNode); //print text of weight
         weightTextPaint.paint(
             canvas,
-            GraphHelpers.cordiantesForPrintIngWeight(
-                point1: point1, point2: point2, weight: weightOfEdge));
+    GraphHelpers.cordiantesForPrintIngWeight(
+                point1: point1, point2: point2,weight:e.weight.toString()));
       }
     }
   }

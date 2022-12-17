@@ -132,31 +132,23 @@ mixin GraphHelpers {
   static Offset cordiantesForPrintIngWeight(
       {required Offset point1,
       required Offset point2,
-      required String weight}) {
-    Offset centerOfLine =
-        centerCordiantesOfLine(point1: point1, point2: point2);
-    double angleOfLine = angleOf(point1, point2);
-    double angleToUp = (angleOfLine - 90);
-    angleToUp = angleToUp < 0 ? angleToUp + 360 : angleToUp;
-    Offset pointOfUpWardDistance = pointsAtPerticularAngleAndDistance(
-        point1: centerOfLine, angleInDegree: angleToUp, distance: 18);
-    if (point2.dx - point1.dx >= 0) {
-      Offset pointPrintableDistance = pointsAtPerticularAngleAndDistance(
-          point1: pointOfUpWardDistance,
-          angleInDegree: angleOfLine,
-          distance: 2);
-      return pointPrintableDistance;
-    } else {
-      double angleOfLineInOppositeDir = angleOfLine - 180;
-      angleOfLineInOppositeDir = angleOfLineInOppositeDir < 0
-          ? angleOfLineInOppositeDir + 360
-          : angleOfLineInOppositeDir;
-      Offset pointPrintableDistance = pointsAtPerticularAngleAndDistance(
-          point1: pointOfUpWardDistance,
-          angleInDegree: angleOfLineInOppositeDir,
-          distance: 2);
-      return pointPrintableDistance;
-    }
+      required String weight
+      }) {
+
+        double sideOfSquare=30;
+        double diagonalOfSquare=math.sqrt(2)*sideOfSquare;
+        double distance;
+        if(weight.length == 1){
+          distance=12;
+        }else if(weight.length == 2){
+          distance=10;
+        }else{
+          distance=6;
+        }
+        Offset centerPointOfLine=GraphHelpers.centerCordiantesOfLine(point1: point1, point2: point2);
+        Offset bCoordinate=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: centerPointOfLine, distance:(diagonalOfSquare/2)-distance, angleInDegree: 45+180);
+        return bCoordinate;
+
   }
 
   static double degreeToRadian({required double degree}) {
