@@ -63,6 +63,7 @@ class MakeGraphProvider extends ChangeNotifier {
         break;
       }
     }
+    if(_nodes.length==0)_maxNode=1;
     notifyListeners();
   }
 

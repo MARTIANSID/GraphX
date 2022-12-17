@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphx/Helper/CostumColor.dart';
+import 'package:graphx/Helper/TextPainterHelper.dart';
 
 import 'Helper/GraphHelpers.dart';
 import 'Helper/PaintsHelper.dart';
@@ -17,13 +18,8 @@ class MakeGraph extends CustomPainter {
     double nodedRadius = 18;
     for (int i = 0; i < nodes.length; i++) {
       String nodeName = "${nodes[i].nodeNo}";
-      TextSpan span = TextSpan(
-          style: const TextStyle(color: Colors.yellow), text: nodeName);
-      TextPainter nodeCenterPaint = TextPainter(
-          text: span,
-          textAlign: TextAlign.center,
-          textDirection: TextDirection.ltr);
-      nodeCenterPaint.layout();
+      TextPainter nodeCenterPaint =
+          TextPainterHelper.nodeCenterPaint(nodeName: nodeName);
       //inner color of node
       canvas.drawCircle(
           nodes[i].coordinates!, nodedRadius, PaintsHelper.nodeInnerPaint);
@@ -62,11 +58,19 @@ class MakeGraph extends CustomPainter {
         canvas.drawLine(p1, p2, PaintsHelper.edgePaint);
       }
       if (e.weight != null) {
-        /*
-          center cordiantes where weight need to be shown
-          */
-        Path weightPath=PathsHelper.pathOfRectangleWeight(point1: point1, point2: point2);
+        String weightOfEdge = "${e.weight}";
+        TextPainter weightTextPaint =
+            TextPainterHelper.weightPainter(weight: weightOfEdge);
+        //path of weight
+        Path weightPath =
+            PathsHelper.pathOfRectangleWeight(point1: point1, point2: point2);
+        //draw weighted rectangle
         canvas.drawPath(weightPath, PaintsHelper.paintOfWeightNode);
+        //print text of weight
+        weightTextPaint.paint(
+            canvas,
+            GraphHelpers.cordiantesForPrintIngWeight(
+                point1: point1, point2: point2, weight: weightOfEdge));
       }
     }
   }
