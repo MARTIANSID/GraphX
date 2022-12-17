@@ -21,45 +21,48 @@ class PathsHelper{
     return path;
   }
   static pathOfRectangleWeight({required Offset point1,required Offset point2}){
+    double rectangleWidth=30;
+    double rectangleHeight=20;
     Path path=Path();
     if(point2.dx-point1.dx>=0){
+      //if line is going right
       Offset pointA=GraphHelpers.centerCordiantesOfLine(point1: point1, point2: point2);
       double angleToB=GraphHelpers.angleOf(point1, point2);
       path.moveTo(pointA.dx, pointA.dy,);
-      Offset pointB=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointA, distance: 30, angleInDegree: angleToB);
+      Offset pointB=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointA, distance: rectangleWidth, angleInDegree: angleToB);
       path.lineTo(pointB.dx, pointB.dy);
 
       double angleToC=(angleToB-90);
       angleToC=angleToC<0?angleToC+360:angleToC;
-      Offset pointC=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointB, distance: 20, angleInDegree: angleToC);
+      Offset pointC=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointB, distance: rectangleHeight, angleInDegree: angleToC);
       path.lineTo(pointC.dx, pointC.dy);
 
       double angleToD=angleToB-180;
       angleToD=angleToD<0?angleToD+360:angleToD;
-      Offset pointD=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointC, distance: 30, angleInDegree: angleToD);
+      Offset pointD=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointC, distance: rectangleWidth, angleInDegree: angleToD);
       path.lineTo(pointD.dx, pointD.dy);
       path.close();
     }else{
+      //if line is going left
       Offset pointA=GraphHelpers.centerCordiantesOfLine(point1: point1, point2: point2);
       double angleToB=GraphHelpers.angleOf(point1, point2);
       angleToB=angleToB-180;
       angleToB=angleToB<0?angleToB+360:angleToB;
       path.moveTo(pointA.dx, pointA.dy,);
-      Offset pointB=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointA, distance: 30, angleInDegree: angleToB);
+      Offset pointB=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointA, distance: rectangleWidth, angleInDegree: angleToB);
       path.lineTo(pointB.dx, pointB.dy);
 
       double angleToC=(angleToB-90);
       angleToC=angleToC<0?angleToC+360:angleToC;
-      Offset pointC=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointB, distance: 20, angleInDegree: angleToC);
+      Offset pointC=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointB, distance: rectangleHeight, angleInDegree: angleToC);
       path.lineTo(pointC.dx, pointC.dy);
 
       double angleToD=angleToB-180;
       angleToD=angleToD<0?angleToD+360:angleToD;
-      Offset pointD=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointC, distance: 30, angleInDegree: angleToD);
+      Offset pointD=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: pointC, distance: rectangleWidth, angleInDegree: angleToD);
       path.lineTo(pointD.dx, pointD.dy);
       path.close();
     }
-    
     
     return path;
   }
