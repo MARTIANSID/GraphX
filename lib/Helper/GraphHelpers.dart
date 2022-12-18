@@ -159,7 +159,7 @@ mixin GraphHelpers {
     return radian * 180 / math.pi;
   }
 
-  static Map<int, List<Node>> getGraph({required List<Edge> edgeList}) {
+  static HashMap<int, List<Node>> getGraph({required List<Edge> edgeList}) {
     HashMap<int, List<Node>> graph = HashMap();
 
     for (int i = 0; i < edgeList.length; i++) {
@@ -178,5 +178,10 @@ mixin GraphHelpers {
     }
 
     return graph;
+  }
+  static void setAllNodesUnvisited({required List<Node> nodeList}){
+    for(Node node in nodeList){
+      node.SetVisited(vis: false);
+    }
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphx/Components/Buttons/PrimaryButton.dart';
+import 'package:graphx/Helper/GraphHelpers.dart';
+import 'package:graphx/Providers/Algorithms.dart';
+import 'package:graphx/Providers/MakeGraphProvider.dart';
 import 'package:graphx/Providers/OperationButtonSelected.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +11,10 @@ class OperationsBar extends StatelessWidget {
   Widget build(BuildContext context) {
     OperationButtonSelected buttonSelected =
         Provider.of<OperationButtonSelected>(context);
+
+    MakeGraphProvider makeGraphProvider =
+        Provider.of<MakeGraphProvider>(context);
+    Algorithms algorithmProviders = Provider.of<Algorithms>(context);
     return Row(
       children: [
         PrimaryButton(
@@ -40,6 +47,14 @@ class OperationsBar extends StatelessWidget {
           },
           selection: buttonSelected.selected == 3,
         ),
+        PrimaryButton(
+            buttonName: "BFS",
+            action: () => {
+                  algorithmProviders.bfs(
+                      GraphHelpers.getGraph(
+                          edgeList: makeGraphProvider.edgeList),
+                      makeGraphProvider.nodesList[0])
+                })
       ],
     );
   }
