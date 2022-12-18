@@ -18,12 +18,19 @@ class MakeGraphProvider extends ChangeNotifier {
     _nodes.add(node);
     notifyListeners();
   }
-
+  
   void addEdge({required Edge edge}) {
     _edges.add(edge);
     notifyListeners();
   }
-
+  void setNodeVisited({required int nodeNo}){
+    for(Node node in _nodes){
+      if(node.nodeNo==nodeNo){
+        node.SetVisited(vis: true);
+      }
+    }
+    notifyListeners();
+  }
   set setIsDirected(bool isDirected) {
     _isDirected = isDirected;
   }
@@ -32,7 +39,12 @@ class MakeGraphProvider extends ChangeNotifier {
   get getIsDirected {
     return _isDirected;
   }
-
+   void setAllNodesUnvisited({required List<Node> nodeList}){
+    for(Node node in nodeList){
+      node.SetVisited(vis: false);
+    }
+    notifyListeners();
+  }
   void makeEdge(int nodeNo1, int nodeNo2, bool isDirected,
       {int? weight, int? textAboveEdge}) {
     Node? node1 =

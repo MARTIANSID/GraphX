@@ -1,8 +1,10 @@
-2022/12/16-22:58:08.843 a8c Reusing MANIFEST C:\Users\sai\AppData\Local\Temp\flutter_tools.567e3abe\flutter_tools_chrome_device.b84462c3\Default\File System\Origins/MANIFEST-000001
-2022/12/16-22:58:08.844 a8c Recovering log #10
-2022/12/16-22:58:08.845 a8c Reusing old log C:\Users\sai\AppData\Local\Temp\flutter_tools.567e3abe\flutter_tools_chrome_device.b84462c3\Default\File System\Origins/000010.log 
-2022/12/16-22:58:08.846 a8c Delete type=0 #3
-2022/12/16-22:58:08.846 a8c Delete type=2 #4
-2022/12/16-22:58:08.846 a8c Delete type=2 #6
-2022/12/16-22:58:08.846 a8c Delete type=0 #6
-2022/12/16-22:58:08.846 a8c Delete type=2 #7
+2022/12/19-00:08:22.137 3158 Reusing MANIFEST C:\Users\sai\AppData\Local\Temp\flutter_tools.2231f30f\flutter_tools_chrome_device.876eaa09\Default\File System\Origins/MANIFEST-000001
+2022/12/19-00:08:22.140 29d8 Compacting 5@0 + 0@1 files
+2022/12/19-00:08:22.144 29d8 Generated table #17@0: 2 keys, 167 bytes
+2022/12/19-00:08:22.144 29d8 Compacted 5@0 + 0@1 files => 167 bytes
+2022/12/19-00:08:22.145 29d8 compacted to: files[ 0 1 0 0 0 0 0 ]
+2022/12/19-00:08:22.146 29d8 Delete type=2 #4
+2022/12/19-00:08:22.146 29d8 Delete type=2 #6
+2022/12/19-00:08:22.146 29d8 Delete type=2 #7
+2022/12/19-00:08:22.146 29d8 Delete type=2 #11
+2022/12/19-00:08:22.146 29d8 Delete type=2 #12

@@ -179,9 +179,5 @@ mixin GraphHelpers {
 
     return graph;
   }
-  static void setAllNodesUnvisited({required List<Node> nodeList}){
-    for(Node node in nodeList){
-      node.SetVisited(vis: false);
-    }
-  }
+ 
 }

@@ -14,7 +14,7 @@ class OperationsBar extends StatelessWidget {
 
     MakeGraphProvider makeGraphProvider =
         Provider.of<MakeGraphProvider>(context);
-    Algorithms algorithmProviders = Provider.of<Algorithms>(context);
+   
     return Row(
       children: [
         PrimaryButton(
@@ -50,11 +50,8 @@ class OperationsBar extends StatelessWidget {
         PrimaryButton(
             buttonName: "BFS",
             action: () => {
-                  algorithmProviders.bfs(
-                      GraphHelpers.getGraph(
-                          edgeList: makeGraphProvider.edgeList),
-                      makeGraphProvider.nodesList[0])
-                })
+                  Algorithms().bfs(provider: makeGraphProvider,startNode: makeGraphProvider.nodesList[0]),
+                },)
       ],
     );
   }

@@ -18,9 +18,9 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => action(),
-      // hoverColor: (selection == null || !selection!)
-      //     ? Color.fromARGB(255, 211, 210, 210)
-      //     : CostumColor.darkPrimary,
+      hoverColor: (selection == null || !selection!)
+          ? Color.fromARGB(255, 211, 210, 210)
+          : CostumColor.darkPrimary,
       customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),

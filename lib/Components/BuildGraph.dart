@@ -12,25 +12,22 @@ class BuildGraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: ((_) => Algorithms()),
-      child: ChangeNotifierProvider(
-        create: (_) => OperationButtonSelected(1),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            OperationsBar(),
-            const SizedBox(
-              height: 10,
-            ),
-            OPerationsHelper(),
-            const SizedBox(
-              height: 10,
-            ),
-            GraphCanvas(),
-          ],
-        ),
+      create: (_) => OperationButtonSelected(1),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          OperationsBar(),
+          const SizedBox(
+            height: 10,
+          ),
+          OPerationsHelper(),
+          const SizedBox(
+            height: 10,
+          ),
+          GraphCanvas(),
+        ],
       ),
     );
   }
