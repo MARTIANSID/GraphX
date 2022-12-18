@@ -1,11 +1,23 @@
-2022/12/16-14:30:55.186 1738 Reusing MANIFEST C:\Users\sai\AppData\Local\Temp\flutter_tools.1ff25fbe\flutter_tools_chrome_device.68bb51a5\Default\Site Characteristics Database/MANIFEST-000001
-2022/12/16-14:30:55.187 1738 Recovering log #19
-2022/12/16-14:30:55.188 1738 Reusing old log C:\Users\sai\AppData\Local\Temp\flutter_tools.1ff25fbe\flutter_tools_chrome_device.68bb51a5\Default\Site Characteristics Database/000019.log 
-2022/12/16-14:30:55.188 1738 Delete type=0 #3
-2022/12/16-14:30:55.189 1738 Delete type=2 #4
-2022/12/16-14:30:55.189 1738 Delete type=2 #6
-2022/12/16-14:30:55.189 1738 Delete type=0 #6
-2022/12/16-14:30:55.189 1738 Delete type=0 #10
-2022/12/16-14:30:55.189 1738 Delete type=2 #11
-2022/12/16-14:30:55.189 1738 Delete type=2 #13
-2022/12/16-14:30:55.189 1738 Delete type=2 #14
+2022/12/18-00:53:56.357 3344 Log #3: 6 ops saved to Table #25 OK
+2022/12/18-00:53:56.360 3344 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.aaaaad08\flutter_tools_chrome_device.4a279933\Default\Site Characteristics Database/000003.log: OK
+2022/12/18-00:53:56.363 3344 Log #6: 20 ops saved to Table #26 OK
+2022/12/18-00:53:56.367 3344 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.aaaaad08\flutter_tools_chrome_device.4a279933\Default\Site Characteristics Database/000006.log: OK
+2022/12/18-00:53:56.371 3344 Log #10: 2 ops saved to Table #27 OK
+2022/12/18-00:53:56.375 3344 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.aaaaad08\flutter_tools_chrome_device.4a279933\Default\Site Characteristics Database/000010.log: OK
+2022/12/18-00:53:56.379 3344 Log #19: 7 ops saved to Table #28 OK
+2022/12/18-00:53:56.380 3344 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.aaaaad08\flutter_tools_chrome_device.4a279933\Default\Site Characteristics Database/000019.log: OK
+2022/12/18-00:53:56.380 3344 Table #4: 6 entries OK
+2022/12/18-00:53:56.380 3344 Table #6: 6 entries OK
+2022/12/18-00:53:56.381 3344 Table #11: 8 entries OK
+2022/12/18-00:53:56.381 3344 Table #13: 6 entries OK
+2022/12/18-00:53:56.381 3344 Table #14: 20 entries OK
+2022/12/18-00:53:56.382 3344 Table #20: 8 entries OK
+2022/12/18-00:53:56.382 3344 Table #22: 6 entries OK
+2022/12/18-00:53:56.382 3344 Table #23: 20 entries OK
+2022/12/18-00:53:56.383 3344 Table #24: 2 entries OK
+2022/12/18-00:53:56.383 3344 Table #25: 6 entries OK
+2022/12/18-00:53:56.383 3344 Table #26: 20 entries OK
+2022/12/18-00:53:56.383 3344 Table #27: 2 entries OK
+2022/12/18-00:53:56.383 3344 Table #28: 7 entries OK
+2022/12/18-00:53:56.389 3344 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.aaaaad08\flutter_tools_chrome_device.4a279933\Default\Site Characteristics Database/MANIFEST-000001: OK
+2022/12/18-00:53:56.396 3344 **** Repaired leveldb C:\Users\sai\AppData\Local\Temp\flutter_tools.aaaaad08\flutter_tools_chrome_device.4a279933\Default\Site Characteristics Database; recovered 13 files; 5853 bytes. Some data may have been lost. ****

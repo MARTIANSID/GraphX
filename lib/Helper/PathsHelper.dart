@@ -41,6 +41,27 @@ class PathsHelper{
         path.close();
         return path;
     }
+      static pathOfRectangleWeightBorder({required Offset point1,required Offset point2}){
+        double sideOfSquare=31;
+        double diagonalOfSquare=math.sqrt(2)*sideOfSquare;
+        Path path=Path();
+        Offset centerPointOfLine=GraphHelpers.centerCordiantesOfLine(point1: point1, point2: point2);
+        Offset aCoordinate=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: centerPointOfLine, distance:diagonalOfSquare/2 , angleInDegree: 45);
+
+        Offset bCoordinate=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: centerPointOfLine, distance:diagonalOfSquare/2 , angleInDegree: 45+90);
+
+        Offset cCoordinate=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: centerPointOfLine, distance:diagonalOfSquare/2 , angleInDegree: 45+180);
+
+        Offset dCoordinate=GraphHelpers.pointsAtPerticularAngleAndDistance(point1: centerPointOfLine, distance:diagonalOfSquare/2 , angleInDegree: 45+270);
+        path.moveTo(aCoordinate.dx, aCoordinate.dy);
+        path.lineTo(bCoordinate.dx,bCoordinate.dy);
+
+        path.lineTo(cCoordinate.dx,cCoordinate.dy);
+
+        path.lineTo(dCoordinate.dx,dCoordinate.dy);
+        path.close();
+        return path;
+    }
 
 
   }

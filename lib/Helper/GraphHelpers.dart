@@ -136,11 +136,11 @@ mixin GraphHelpers {
     double diagonalOfSquare = math.sqrt(2) * sideOfSquare;
     double distance;
     if (weight.length == 1) {
-      distance = 12;
+      distance = 14;
     } else if (weight.length == 2) {
       distance = 10;
     } else {
-      distance = 6;
+      distance = 5;
     }
     Offset centerPointOfLine =
         GraphHelpers.centerCordiantesOfLine(point1: point1, point2: point2);
