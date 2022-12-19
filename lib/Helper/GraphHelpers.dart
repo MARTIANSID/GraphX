@@ -19,17 +19,11 @@ mixin GraphHelpers {
   }
 
   static bool isNodePresent(
-      {required int nodeNo, required HashSet<int> nodeSet}) {
-    return nodeSet.contains(nodeNo);
+      {required int nodeNo, required Map<int,Node> nodes}) {
+    return nodes.containsKey(nodeNo);
   }
 
-  static Node? getNodeWithNodeNo(
-      {required int nodeNo, required List<Node> nodeList}) {
-    for (Node node in nodeList) {
-      if (node.nodeNo == nodeNo) return node;
-    }
-    return null;
-  }
+ 
 
   static double distanceBwPoints(
       {required Offset point1, required Offset point2}) {

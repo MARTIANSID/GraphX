@@ -1,13 +1,15 @@
-2022/12/19-00:08:22.086 3158 Log #3: 3 ops saved to Table #12 OK
-2022/12/19-00:08:22.095 3158 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.2231f30f\flutter_tools_chrome_device.876eaa09\Default\File System\Origins/000003.log: OK
-2022/12/19-00:08:22.096 3158 Log #6: 0 ops saved to Table #13 OK
-2022/12/19-00:08:22.101 3158 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.2231f30f\flutter_tools_chrome_device.876eaa09\Default\File System\Origins/000006.log: OK
-2022/12/19-00:08:22.102 3158 Log #10: 0 ops saved to Table #14 OK
-2022/12/19-00:08:22.107 3158 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.2231f30f\flutter_tools_chrome_device.876eaa09\Default\File System\Origins/000010.log: OK
-2022/12/19-00:08:22.107 3158 Table #4: 3 entries OK
-2022/12/19-00:08:22.108 3158 Table #6: 3 entries OK
-2022/12/19-00:08:22.108 3158 Table #7: 3 entries OK
-2022/12/19-00:08:22.109 3158 Table #11: 2 entries OK
-2022/12/19-00:08:22.109 3158 Table #12: 3 entries OK
-2022/12/19-00:08:22.116 3158 Archiving C:\Users\sai\AppData\Local\Temp\flutter_tools.2231f30f\flutter_tools_chrome_device.876eaa09\Default\File System\Origins/MANIFEST-000001: OK
-2022/12/19-00:08:22.129 3158 **** Repaired leveldb C:\Users\sai\AppData\Local\Temp\flutter_tools.2231f30f\flutter_tools_chrome_device.876eaa09\Default\File System\Origins; recovered 5 files; 883 bytes. Some data may have been lost. ****
+2022/12/19-00:28:02.409 14d4 Reusing MANIFEST C:\Users\sai\AppData\Local\Temp\flutter_tools.8b64683\flutter_tools_chrome_device.62f32d9\Default\File System\Origins/MANIFEST-000001
+2022/12/19-00:28:02.410 14d4 Recovering log #3
+2022/12/19-00:28:02.410 14d4 Level-0 table #19: started
+2022/12/19-00:28:02.413 14d4 Level-0 table #19: 179 bytes OK
+2022/12/19-00:28:02.414 14d4 Recovering log #6
+2022/12/19-00:28:02.414 14d4 Recovering log #10
+2022/12/19-00:28:02.414 14d4 Recovering log #16
+2022/12/19-00:28:02.415 14d4 Reusing old log C:\Users\sai\AppData\Local\Temp\flutter_tools.8b64683\flutter_tools_chrome_device.62f32d9\Default\File System\Origins/000016.log 
+2022/12/19-00:28:02.417 14d4 Delete type=0 #3
+2022/12/19-00:28:02.417 14d4 Delete type=2 #4
+2022/12/19-00:28:02.417 14d4 Delete type=2 #6
+2022/12/19-00:28:02.417 14d4 Delete type=0 #6
+2022/12/19-00:28:02.417 14d4 Delete type=2 #7
+2022/12/19-00:28:02.417 14d4 Delete type=0 #10
+2022/12/19-00:28:02.417 14d4 Delete type=2 #11

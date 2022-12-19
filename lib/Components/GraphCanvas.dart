@@ -35,8 +35,7 @@ class _GraphCanvasState extends State<GraphCanvas> {
               makeGraph.addNode(
                   node: Node(
                       coordinates: Offset(
-                          details.localPosition.dx, details.localPosition.dy),
-                      nodeNo: makeGraph.nodesList.length + 1));
+                          details.localPosition.dx, details.localPosition.dy)));
             } else if (operationButton.selected == 3) {
               makeGraph.removeNode(
                   Offset(details.localPosition.dx, details.localPosition.dy));
@@ -44,7 +43,7 @@ class _GraphCanvasState extends State<GraphCanvas> {
           }),
           child: CustomPaint(
             painter: MakeGraph(
-                nodes: makeGraph.nodesList, edges: makeGraph.edgeList),
+                nodes: makeGraph.nodesMap, edges: makeGraph.edgeList),
           )),
     );
   }

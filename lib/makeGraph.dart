@@ -11,14 +11,14 @@ import 'models/edge.dart';
 import 'dart:math' as math;
 
 class MakeGraph extends CustomPainter {
-  List<Node> nodes;
+  Map<int,Node> nodes;
   List<Edge> edges;
   MakeGraph({required this.nodes, required this.edges});
   @override
   void paint(Canvas canvas, Size size) {
     double nodeRadius = 18;
-    for (int i = 0; i < nodes.length; i++) {
-      CanvasHelper.buildNode(node: nodes[i]!, canvas: canvas, nodedRadius: nodeRadius);
+    for (int nodeNo in nodes.keys) {
+      CanvasHelper.buildNode(node: nodes[nodeNo]!, canvas: canvas, nodedRadius: nodeRadius);
     }
 
     for (int i = 0; i < edges.length; i++) {

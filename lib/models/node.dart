@@ -4,7 +4,7 @@ class Node {
   int nodeNo;
   Offset coordinates;
   bool _visited=false;
-  Node({ required this.nodeNo, required this.coordinates});
+  Node({this.nodeNo=0, required this.coordinates});
   get visited{
     return _visited;
   }

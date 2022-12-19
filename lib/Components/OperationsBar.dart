@@ -1,9 +1,9 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:graphx/Algorithms/dfs.dart';
 import 'package:graphx/Components/Buttons/PrimaryButton.dart';
 import 'package:graphx/Helper/GraphHelpers.dart';
-import 'package:graphx/Algorithms/Algorithms.dart';
 import 'package:graphx/Providers/MakeGraphProvider.dart';
 import 'package:graphx/Providers/OperationButtonSelected.dart';
 import 'package:provider/provider.dart';
@@ -55,13 +55,13 @@ class OperationsBar extends StatelessWidget {
         PrimaryButton(
           buttonName: "DFS",
           action: () => {
-            Algorithms().dfs(
+            Dfs.run(
                 provider: makeGraphProvider,
-                src: makeGraphProvider.nodesList[0],
+                src: makeGraphProvider.nodesMap[1],
                 visited: HashSet(),
                 order: orderOfDfsNodes),
-            print(orderOfDfsNodes),
-            Algorithms().dfsHelper(orderOfDfsNodes,makeGraphProvider)
+           
+            Dfs.dfsHelper(orderOfDfsNodes,makeGraphProvider)
           },
         )
       ],

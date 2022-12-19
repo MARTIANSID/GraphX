@@ -7,15 +7,14 @@ import '../models/node.dart';
 import 'dart:math' as math;
 
 class MakeGraphProvider extends ChangeNotifier {
-  List<Node> _nodes = [];
+  Map<int,Node> _nodes = new HashMap();
   List<Edge> _edges = [];
-  HashSet<int> nodeSet = HashSet();
   bool _isDirected = false;
   int _maxNode = 1;
   void addNode({required Node node}) {
     node.nodeNo = _maxNode++;
-    nodeSet.add(node.nodeNo);
-    _nodes.add(node);
+    _nodes.putIfAbsent(node.nodeNo, () => node);
+    // _nodes.add(node);s
     notifyListeners();
   }
   
@@ -24,11 +23,7 @@ class MakeGraphProvider extends ChangeNotifier {
     notifyListeners();
   }
   void setNodeVisited({required int nodeNo}){
-    for(Node node in _nodes){
-      if(node.nodeNo==nodeNo){
-        node.SetVisited(vis: true);
-      }
-    }
+    _nodes[nodeNo]!.SetVisited(vis: true);
     notifyListeners();
   }
   set setIsDirected(bool isDirected) {
@@ -39,35 +34,30 @@ class MakeGraphProvider extends ChangeNotifier {
   get getIsDirected {
     return _isDirected;
   }
-   void setAllNodesUnvisited({required List<Node> nodeList}){
-    for(Node node in nodeList){
-      node.SetVisited(vis: false);
+   void setAllNodesUnvisited(){
+    for(int key in _nodes.keys){
+      _nodes[key]!.SetVisited(vis: false);
     }
     notifyListeners();
   }
   void makeEdge(int nodeNo1, int nodeNo2, bool isDirected,
       {int? weight, int? textAboveEdge}) {
-    Node? node1 =
-        GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo1, nodeList: _nodes);
-    Node? node2 =
-        GraphHelpers.getNodeWithNodeNo(nodeNo: nodeNo2, nodeList: _nodes);
-
+    Node? node1 =_nodes[nodeNo1];
+    Node? node2 =_nodes[nodeNo2];
     _edges.add(Edge(
         node1: node1!, node2: node2!, weight: weight, isDirected: isDirected));
     notifyListeners();
   }
 
   void removeNode(Offset point1) {
-    for (int i = _nodes.length - 1; i >= 0; i--) {
-      Node node = _nodes[i];
+    for (int nodeNo in _nodes.keys) {
+      Node node = _nodes[nodeNo]!;
       Offset point2 = node.coordinates;
       double distance =
           GraphHelpers.distanceBwPoints(point1: point1, point2: point2);
       // node should be removed
       if (distance <= 18) {
-        nodeSet.remove(_nodes[i].nodeNo);
-        _nodes.removeAt(i);
-
+        _nodes.remove(nodeNo);
         //index's of edges that should be removed
         List<int> _indToRemove = [];
         //get the indexes to be removed
@@ -91,7 +81,7 @@ class MakeGraphProvider extends ChangeNotifier {
     return node1.nodeNo == node2.nodeNo;
   }
 
-  get nodesList {
+  get nodesMap {
     return _nodes;
   }
 

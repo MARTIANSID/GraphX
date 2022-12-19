@@ -4,7 +4,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:graphx/Components/GraphCanvas.dart';
 import 'package:graphx/Components/OperationsBar.dart';
 import 'package:graphx/Components/OperationsHelper.dart';
-import 'package:graphx/Algorithms/Algorithms.dart';
 import 'package:provider/provider.dart';
 import '../Providers/OperationButtonSelected.dart';
 
