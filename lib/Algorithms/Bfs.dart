@@ -6,7 +6,7 @@ import '../models/node.dart';
 import '../Providers/MakeGraphProvider.dart';
 
 class Bfs{
-  static void run(
+  static Future<void> run(
       {required MakeGraphProvider provider, required Node startNode}) async {
     HashSet<int> visited = HashSet();
     HashMap<int, List<Node>> graph =

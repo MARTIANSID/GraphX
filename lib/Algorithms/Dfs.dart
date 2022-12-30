@@ -6,7 +6,7 @@ import '../models/node.dart';
 import '../Providers/MakeGraphProvider.dart';
 
 class Dfs{
-   static void run(
+   static Future<void> run(
       {required MakeGraphProvider provider,
       required HashSet<int>? visited,
       required Node src,
@@ -22,12 +22,11 @@ class Dfs{
       run(provider: provider, visited: visited, src: node, order: order);
     }
   }
-
-  static void dfsHelper(List<Node>? visited, MakeGraphProvider provider) async {
+  static Future<void> dfsHelper(List<Node>? visited, MakeGraphProvider provider) async {
     for (int i = 0; i < visited!.length; i++) {
       Node ele = visited.elementAt(i);
       provider.setNodeVisited(nodeNo: ele.nodeNo);
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 1));
     }
   }
 }

@@ -9,6 +9,7 @@ import 'package:graphx/Providers/OperationButtonSelected.dart';
 import 'package:provider/provider.dart';
 
 import '../models/node.dart';
+import 'DropDown/DropDown.dart';
 
 class OperationsBar extends StatelessWidget {
   @override
@@ -19,7 +20,7 @@ class OperationsBar extends StatelessWidget {
     MakeGraphProvider makeGraphProvider =
         Provider.of<MakeGraphProvider>(context);
 
-    List<Node>? orderOfDfsNodes = [];
+    // List<Node>? orderOfDfsNodes = [];
     return Row(
       children: [
         PrimaryButton(
@@ -28,6 +29,7 @@ class OperationsBar extends StatelessWidget {
           action: () => {
             buttonSelected.setSelected(selected: 1),
           },
+          disable: buttonSelected.disabled,
           selection: buttonSelected.selected == 1,
         ),
         const SizedBox(
@@ -36,6 +38,7 @@ class OperationsBar extends StatelessWidget {
         PrimaryButton(
           buttonName: "Connect Vertics",
           icon: Icons.link,
+          disable: buttonSelected.disabled,
           action: () => {
             buttonSelected.setSelected(selected: 2),
           },
@@ -47,23 +50,28 @@ class OperationsBar extends StatelessWidget {
         PrimaryButton(
           buttonName: "Remove Object",
           icon: Icons.delete_forever,
+          disable: buttonSelected.disabled,
           action: () => {
             buttonSelected.setSelected(selected: 3),
           },
           selection: buttonSelected.selected == 3,
         ),
-        PrimaryButton(
-          buttonName: "DFS",
-          action: () => {
-            Dfs.run(
-                provider: makeGraphProvider,
-                src: makeGraphProvider.nodesMap[1],
-                visited: HashSet(),
-                order: orderOfDfsNodes),
+        // PrimaryButton(
+        //   buttonName: "DFS",
+        //   action: () => {
+            // Dfs.run(
+            //     provider: makeGraphProvider,
+            //     src: makeGraphProvider.nodesMap[1],
+            //     visited: HashSet(),
+            //     order: orderOfDfsNodes),
            
-            Dfs.dfsHelper(orderOfDfsNodes,makeGraphProvider)
-          },
-        )
+            // Dfs.dfsHelper(orderOfDfsNodes,makeGraphProvider)
+        //   },
+        // ),
+        const SizedBox(
+          width: 5,
+        ),
+        DropDownBuilder(makeGraphProvider: makeGraphProvider,buttonSelected: buttonSelected,)
       ],
     );
   }
