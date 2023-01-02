@@ -1,6 +1,6 @@
 
 <h1>GraphX</h1>
-<p>Website created in flutter to vizualise graph on which different graph algorithms can be applied.</p>
+<p>Website created in flutter to visualise graph on which different graph algorithms can be applied.</p>
 
 <ol>
     <li>Used multiple concepts of coordinate geometry</li>    
@@ -10,7 +10,7 @@
 
 <h1>Features</h1>
 <ol>
-                <li>Vizualise Graph</li>
+                <li>Visualise Graph</li>
                 <li>Create Directed or Undirected Graphs</li>
                 <li>Apply and Vizualise different Graph Algorithms</li>
             </ol>
@@ -23,7 +23,7 @@
             <div>
                 <h1>Add Edge Dialog Box</h1><img src="https://user-images.githubusercontent.com/59787009/210211853-a57a25e9-959f-445c-afa7-6f6ebac00361.jpeg" height="200"/></div>
 
-<h1>Vizualising Algorithms on Graph</h1>
+<h1>Visualising Algorithms on Graph</h1>
 
 
          
