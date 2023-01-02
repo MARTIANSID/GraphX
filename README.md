@@ -12,7 +12,7 @@
 <ol>
                 <li>Visualise Graph</li>
                 <li>Create Directed or Undirected Graphs</li>
-                <li>Apply and Vizualise different Graph Algorithms</li>
+                <li>Apply and Visualise different Graph Algorithms</li>
             </ol>
         <div>
                 <h1>Website Layout</h1>
